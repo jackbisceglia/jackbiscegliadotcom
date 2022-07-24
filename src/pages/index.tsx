@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
-import Image from 'next/Image';
 import Head from 'next/head';
+import Image from 'next/image';
 import React, { useState } from 'react';
 
 import { HelperInfo, HelperSection } from '../components/HelperText';
