@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-color: #05001e;
+  background-image: linear-gradient(
+    305deg,
+    hsl(270deg 100% 4%) 0%,
+    hsl(270deg 94% 7%) 7%,
+    hsl(271deg 92% 10%) 14%,
+    hsl(270deg 86% 14%) 21%,
+    hsl(267deg 86% 15%) 28%,
+    hsl(262deg 90% 12%) 35%,
+    hsl(256deg 96% 9%) 42%,
+    hsl(251deg 100% 7%) 49%,
+    hsl(256deg 96% 9%) 55%,
+    hsl(262deg 90% 12%) 62%,
+    hsl(268deg 87% 15%) 69%,
+    hsl(268deg 87% 15%) 76%,
+    hsl(262deg 90% 12%) 84%,
+    hsl(256deg 96% 9%) 92%,
+    hsl(251deg 100% 7%) 100%
+  );
+}
+
+@layer base {
+  body {
+    @apply bg-purple-900;
+  }
+}
