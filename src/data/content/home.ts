@@ -1,16 +1,8 @@
 import { BulletType, ProfilePictureType } from "../../pages";
-import { ParagraphProps } from "../../data/sharedTypes/props";
-
-type SectionData = {
-  title: {
-    purple: string;
-    white: string;
-  };
-  body: ParagraphProps[];
-};
+import { TextBlockType } from "../sharedTypes/data";
 
 // LEFT SIDE
-export const IntroGreeting: SectionData = {
+export const IntroGreeting: TextBlockType = {
   title: { purple: "Hi, ", white: "I'm Jack" },
   body: [
     {
@@ -24,7 +16,7 @@ export const IntroGreeting: SectionData = {
   ],
 };
 
-export const TechInterests: SectionData = {
+export const TechInterests: TextBlockType = {
   title: { purple: "Tech", white: "Interests" },
   body: [
     { type: "p", text: "I'm largely interested in building cool stuff." },
