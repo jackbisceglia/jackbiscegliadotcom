@@ -4,6 +4,7 @@ export type anchorTagType = {
   github: string;
   text: string;
   live?: string;
+  year?: number;
 };
 
 export type TextSectionType = {
@@ -17,4 +18,9 @@ export type TextBlockType = {
     purple: string;
   };
   body: TextSectionType[];
+};
+
+export type LinkType = {
+  title: string;
+  link: string;
 };

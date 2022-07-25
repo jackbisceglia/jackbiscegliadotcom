@@ -22,6 +22,7 @@ export const ProjectsList: TextBlockType = {
         github: 'https://github.com/jackbisceglia/internship-tracker',
         text: 'AppTrack.tech',
         live: 'https://apptrack.tech',
+        year: 2022,
       },
     },
     {
@@ -30,6 +31,16 @@ export const ProjectsList: TextBlockType = {
         github: 'https://github.com/jackbisceglia/jackbisceglia.com',
         text: 'jackbisceglia.com',
         live: '/',
+        year: 2022,
+      },
+    },
+    {
+      type: 'a',
+      text: {
+        github: 'https://github.com/jackbisceglia/best-pastry',
+        text: 'Best Pastry',
+        live: 'https://best-pastry.vercel.app',
+        year: 2022,
       },
     },
     {
@@ -38,6 +49,16 @@ export const ProjectsList: TextBlockType = {
         github: 'https://github.com/joepetrillo/cs326-final-bullymaguire',
         text: 'LoneMusic',
         live: 'https://lonemusic.herokuapp.com/login/',
+        year: 2022,
+      },
+    },
+    {
+      type: 'a',
+      text: {
+        github: 'https://github.com/jackbisceglia/chess.comProfiler',
+        text: 'Chess.com Dashboard',
+        live: 'https://chessdashboard.netlify.app/',
+        year: 2021,
       },
     },
     {
@@ -45,6 +66,7 @@ export const ProjectsList: TextBlockType = {
       text: {
         github: 'https://github.com/jackbisceglia/battls',
         text: 'Battls',
+        year: 2020,
       },
     },
     {
@@ -52,6 +74,16 @@ export const ProjectsList: TextBlockType = {
       text: {
         github: 'https://github.com/jackbisceglia/trello-clone',
         text: 'Trello Clone',
+        year: 2020,
+      },
+    },
+    {
+      type: 'a',
+      text: {
+        github: 'https://github.com/jackbisceglia/Sort-ify',
+        live: 'https://jackbisceglia.github.io/Sort-ify/',
+        text: 'Sort-ify',
+        year: 2020,
       },
     },
     {
@@ -59,6 +91,7 @@ export const ProjectsList: TextBlockType = {
       text: {
         github: 'https://github.com/jackbisceglia/sneaker-swipe',
         text: 'Sneaker Swipe',
+        year: 2021,
       },
     },
   ],

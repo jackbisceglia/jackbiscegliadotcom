@@ -41,26 +41,31 @@ const TextSectionParser: React.FC<TextSectionParserProps> = ({
   } else if (type === 'a') {
     text = text as anchorTagType;
     return (
-      <div className="flex flex-col py-2 pl-0 transition-all duration-150 ease-in-out hover:pl-2">
-        <p
-          className={`pr-2 text-base font-semibold leading-5 text-left text-white sm:leading-snug sm:text-lg  pointer-none `}
-        >
-          {text.text}
-        </p>
-        <div className="flex flex-row">
-          <Link href={text.github}>
-            <a className="pr-1 duration-100 ease-linear text-purple-50 hover:text-purple-200">
-              GitHub Repo
+      <div className="flex flex-col w-full py-2 pl-0 transition-all duration-200 ease-in-out hover:pl-3">
+        <div className="flex flex-row items-center justify-between w-full">
+          <p
+            className={`pr-2 text-base font-semibold leading-5 text-left text-white sm:leading-snug sm:text-lg  pointer-none `}
+          >
+            {text.text}
+          </p>
+          <p
+            className={`pr-2 text-base font-semibold leading-5 text-left text-purple-400 sm:leading-snug sm:text-lg  pointer-none `}
+          >
+            {text.year}
+          </p>
+        </div>
+        <Link href={text.github}>
+          <a className="py-0.5 duration-100 ease-linear w-fit text-purple-50 hover:text-purple-200">
+            GitHub Repo
+          </a>
+        </Link>
+        {text.live && (
+          <Link href={text.live}>
+            <a className="duration-100 py-0.5 ease-linear w-fit text-purple-50 hover:text-purple-200">
+              Live Site
             </a>
           </Link>
-          {text.live && (
-            <Link href={text.live}>
-              <a className="pl-1 duration-100 ease-linear text-purple-50 hover:text-purple-200">
-                Live Site
-              </a>
-            </Link>
-          )}
-        </div>
+        )}
       </div>
     );
   }

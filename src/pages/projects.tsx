@@ -6,6 +6,7 @@ import TextBlock from '../components/TextBlock';
 import { LeftSection, RightSection } from '../components/layout/ColumnSection';
 import { LeftColumn, RightColumn } from '../components/layout/Columns';
 import * as Content from '../data/content/projects';
+import { TextSectionType, anchorTagType } from '../data/sharedTypes/data';
 
 export const pTypography =
   'text-white text-base leading-5 sm:leading-snug sm:text-lg font-light';
@@ -17,6 +18,13 @@ type LinkType = {
 };
 
 const Projects: NextPage = () => {
+  const sortProjectList = (a: TextSectionType, b: TextSectionType) => {
+    let atext = a.text as anchorTagType;
+    let btext = b.text as anchorTagType;
+
+    return btext.year! - atext.year!;
+  };
+
   return (
     <>
       <Head>
@@ -43,7 +51,9 @@ const Projects: NextPage = () => {
             classOptions="lg:max-w-xs"
             textSections={Content.SideBar.body}
           />
-          <TextBlock textSections={Content.ProjectsList.body} />
+          <TextBlock
+            textSections={Content.ProjectsList.body.sort(sortProjectList)}
+          />
         </RightSection>
       </RightColumn>
     </>

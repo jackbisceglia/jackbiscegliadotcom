@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 
 import { HelperInfo, HelperSection } from '../components/HelperText';
+import LinkGrid from '../components/LinkGrid';
 import SectionTitle from '../components/SectionTitle';
 import TextBlock from '../components/TextBlock';
 import { LeftSection, RightSection } from '../components/layout/ColumnSection';
@@ -22,11 +23,6 @@ export type BulletType = {
 export type ProfilePictureType = {
   src: string;
   caption: string;
-};
-
-type LinkType = {
-  title: string;
-  link: string;
 };
 
 const Home: NextPage = () => {
@@ -73,22 +69,6 @@ const Home: NextPage = () => {
   );
 };
 
-const LinkGrid: React.FC<{ links: LinkType[] }> = ({ links }) => {
-  return (
-    <div className={`w-full flex flex-wrap py-1`}>
-      {links.map(({ title, link }, idx) => (
-        <a
-          href={link}
-          key={idx}
-          className="pr-2 text-base font-light leading-5 text-left text-white transition-colors duration-100 ease-in-out sm:leading-snug sm:text-lg hover:text-purple-200"
-        >
-          {title}
-        </a>
-      ))}
-    </div>
-  );
-};
-
 const Bullet: React.FC<{ bullet: BulletType[] }> = ({ bullet }) => {
   return (
     <p className={`${pTypography} py-0.5`}>
@@ -125,19 +105,23 @@ const Picture: React.FC<ProfilePictureType> = ({ src, caption }) => {
       onMouseEnter={reverseShowState}
       onMouseLeave={reverseShowState}
     >
-      <div className="w-auto h-auto border-4 border-purple-400 rounded-md">
-        <Image
-          src={src}
-          alt={caption}
-          layout="responsive"
-          width={1200}
-          height={1200}
-          objectFit="cover"
-          className="scale-100 border-purple-400 rounded-sm"
-        />
+      <div className="relative group">
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-90 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+        <div className="w-auto h-auto border-4 border-purple-400 rounded-md">
+          <Image
+            src={src}
+            alt={caption}
+            layout="responsive"
+            width={1200}
+            height={1200}
+            objectFit="cover"
+            className="scale-100 border-purple-400 rounded-sm"
+          />
+        </div>
       </div>
-
-      <HelperInfo show={showCaption}>{caption}</HelperInfo>
+      <HelperInfo paddingOptions="py-3" show={showCaption}>
+        {caption}
+      </HelperInfo>
     </div>
   );
 };
