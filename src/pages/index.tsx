@@ -32,7 +32,7 @@ const Home: NextPage = () => {
         <title>Welcome - Jack B</title>
         <meta
           name="description"
-          content="Senior CS Student @ UMass Amherst with interests in Fullstack Engineering. Lot of Web stuff."
+          content="Senior CS Student @ UMass Amherst with an interest in Fullstack Engineering. Lots of Web stuff."
         />
         <link
           rel="icon"
