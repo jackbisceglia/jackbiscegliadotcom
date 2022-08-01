@@ -1,12 +1,17 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import { text } from 'stream/consumers';
 
+import ProjectCard from '../components/ProjectCard';
 import SectionTitle from '../components/SectionTitle';
 import TextBlock from '../components/TextBlock';
 import { LeftSection, RightSection } from '../components/layout/ColumnSection';
 import { LeftColumn, RightColumn } from '../components/layout/Columns';
 import * as Content from '../data/content/projects';
-import { TextSectionType, anchorTagType } from '../data/sharedTypes/data';
+import {
+  ProjectLinkContentType,
+  TextSectionType,
+} from '../data/sharedTypes/data';
 
 export const pTypography =
   'text-white text-base leading-5 sm:leading-snug sm:text-lg font-light';
@@ -19,11 +24,16 @@ type LinkType = {
 
 const Projects: NextPage = () => {
   const sortProjectList = (a: TextSectionType, b: TextSectionType) => {
-    let atext = a.text as anchorTagType;
-    let btext = b.text as anchorTagType;
+    let atext = a.content as ProjectLinkContentType;
+    let btext = b.content as ProjectLinkContentType;
 
     return btext.year! - atext.year!;
   };
+  console.log('TEST');
+  console.log(
+    'a',
+    Content.ProjectsInfo.body[0].content as ProjectLinkContentType,
+  );
 
   return (
     <>
@@ -42,6 +52,17 @@ const Projects: NextPage = () => {
             purple={Content.ProjectsInfo.title!.purple}
           />
           <TextBlock textSections={Content.ProjectsInfo.body} />
+        </LeftSection>
+        <LeftSection>
+          <SectionTitle purple="Featured" white="Projects" />
+          <ProjectCard
+            {...(Content.ProjectsList.body[0]
+              .content as ProjectLinkContentType)}
+          />
+          <ProjectCard
+            {...(Content.ProjectsList.body[2]
+              .content as ProjectLinkContentType)}
+          />
         </LeftSection>
       </LeftColumn>
       <RightColumn>

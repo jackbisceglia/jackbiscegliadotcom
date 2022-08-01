@@ -1,26 +1,36 @@
-export type paragraphTagType = string;
-export type listTagType = string[];
-export type anchorTagType = {
-  github: string;
-  text: string;
-  live?: string;
-  year?: number;
-};
-
-export type TextSectionType = {
-  type: 'p' | 'l' | 'a';
-  text: paragraphTagType | listTagType | anchorTagType;
-};
-
 export type TextBlockType = {
   title?: {
-    white: string;
     purple: string;
+    white: string;
   };
-  body: TextSectionType[];
+  body: (ParagraphType | ListType | ProjectLinkType)[];
 };
 
-export type LinkType = {
+export type ParagraphContentType = string;
+
+export type ListContentType = string[];
+
+export type ProjectLinkContentType = {
+  github: string;
   title: string;
-  link: string;
+  live?: string;
+  year?: number;
+  descriptionBlocks?: string[];
+  techStack?: string[];
 };
+export type ParagraphType = {
+  type: 'p';
+  content: ParagraphContentType;
+};
+
+export type ListType = {
+  type: 'ul';
+  content: string[];
+};
+
+export type ProjectLinkType = {
+  type: 'a';
+  content: ProjectLinkContentType;
+};
+
+export type TextSectionType = ParagraphType | ListType | ProjectLinkType;

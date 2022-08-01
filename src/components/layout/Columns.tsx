@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type ColumnType = {
   children: React.ReactNode;
@@ -9,8 +9,8 @@ type EmbedChildren = {
   children: React.ReactNode;
 };
 
-const Column: React.FC<ColumnType> = ({ children, classSpecifics = "" }) => {
-  const style = `flex flex-col w-full px-3 ${classSpecifics}`;
+const Column: React.FC<ColumnType> = ({ children, classSpecifics = '' }) => {
+  const style = `flex flex-col w-full px-4 ${classSpecifics}`;
   return <div className={style}>{children}</div>;
 };
 

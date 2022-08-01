@@ -1,31 +1,33 @@
-import { BulletType, ProfilePictureType } from "../../pages";
-import { TextBlockType } from "../sharedTypes/data";
+import { BulletType, ProfilePictureType } from '../../pages';
+import { TextBlockType } from '../sharedTypes/data';
 
 // LEFT SIDE
 export const IntroGreeting: TextBlockType = {
-  title: { purple: "Hi, ", white: "I'm Jack" },
+  title: { purple: 'Hi, ', white: "I'm Jack" },
   body: [
     {
-      type: "p",
-      text: "Hi, my name is Jack! I'm a Senior at UMass Amherst majoring in Computer Science. I'm passionate about Software Engineering; my interest is in web technology and the process of creating a fluent product for the end user.",
+      type: 'p',
+      content:
+        "Hi, my name is Jack! I'm a Senior at UMass Amherst majoring in Computer Science. I'm passionate about Software Engineering; my interest is in web technology and the process of creating a fluent product for the end user.",
     },
     {
-      type: "p",
-      text: "In my free time I love Basketball (Go Celtics), making Hip Hop beats, and reading books (see my blog)!",
+      type: 'p',
+      content:
+        'In my free time I love Basketball (Go Celtics), making Hip Hop beats, and reading books (see my blog)!',
     },
   ],
 };
 
 export const TechInterests: TextBlockType = {
-  title: { purple: "Tech", white: "Interests" },
+  title: { purple: 'Tech', white: 'Interests' },
   body: [
-    { type: "p", text: "I'm largely interested in building cool stuff." },
-    { type: "p", text: "Preferred technologies include:" },
+    { type: 'p', content: "I'm largely interested in building cool stuff." },
+    { type: 'p', content: 'Preferred technologies include:' },
     {
-      type: "l",
-      text: [
-        "React* + Typescript for Client-Side Apps",
-        "Golang* or Typescipt for Server-side Tech",
+      type: 'ul',
+      content: [
+        'React* + Typescript for Client-Side Apps',
+        'Golang* or Typescipt for Server-side Tech',
         "Python whenever I don't know what else to use",
       ],
     },
@@ -33,40 +35,40 @@ export const TechInterests: TextBlockType = {
 };
 
 export const Helpers: string[] = [
-  "Still in the process of learning Go",
-  "I also like Svelte. But React is good",
+  'Still in the process of learning Go',
+  'I also like Svelte. But React is good',
 ];
 
 export const Links = [
   {
-    title: "resume",
-    link: "github.com",
+    title: 'resume',
+    link: 'github.com',
   },
   {
-    title: "github",
-    link: "linkedin.com",
+    title: 'github',
+    link: 'linkedin.com',
   },
   {
-    title: "linkedin",
-    link: "twitter.com",
+    title: 'linkedin',
+    link: 'twitter.com',
   },
   {
-    title: "apptrack",
-    link: "https://apptrack.tech",
+    title: 'apptrack',
+    link: 'https://apptrack.tech',
   },
 ];
 
 const UMass: BulletType[] = [
   {
-    color: "white",
-    text: "CS @ ",
+    color: 'white',
+    text: 'CS @ ',
   },
   {
-    color: "purple",
-    text: "UMass Amherst ",
+    color: 'purple',
+    text: 'UMass Amherst ',
   },
   {
-    color: "white",
+    color: 'white',
     text: "'23",
   },
 ];
@@ -75,32 +77,32 @@ export const Education = [UMass];
 
 const Nuance: BulletType[] = [
   {
-    color: "purple",
-    text: "Nuance ",
+    color: 'purple',
+    text: 'Nuance ',
   },
   {
-    color: "white",
+    color: 'white',
     text: "SWE Intern '21",
   },
 ];
 const HubSpot: BulletType[] = [
   {
-    color: "purple",
-    text: "HubSpot ",
+    color: 'purple',
+    text: 'HubSpot ',
   },
   {
-    color: "white",
+    color: 'white',
     text: "SWE Intern '21",
   },
 ];
 
 const Salesforce: BulletType[] = [
   {
-    color: "purple",
-    text: "Salesforce ",
+    color: 'purple',
+    text: 'Salesforce ',
   },
   {
-    color: "white",
+    color: 'white',
     text: "SWE Intern '22",
   },
 ];
@@ -108,6 +110,6 @@ const Salesforce: BulletType[] = [
 export const Experience: BulletType[][] = [Salesforce, HubSpot, Nuance];
 
 export const Picture: ProfilePictureType = {
-  src: "/images/ggbridge.jpg",
-  caption: "Me at the Golden Gate Bridge",
+  src: '/images/ggbridge.jpg',
+  caption: 'Me at the Golden Gate Bridge',
 };

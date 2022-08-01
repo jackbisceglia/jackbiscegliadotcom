@@ -26,6 +26,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Raleway', ...defaultTheme.fontFamily.sans],
+        mono: ['Fira Code', ...defaultTheme.fontFamily.mono],
       },
       animation: {
         tilt: 'tilt 10s infinite linear',
