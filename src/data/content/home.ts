@@ -42,7 +42,7 @@ export const Helpers: string[] = [
 export const Links = [
   {
     title: 'resume',
-    link: '/JackBiscegliaResume2022.pdf',
+    link: '/2022JackBiscegliaResume.pdf',
   },
   {
     title: 'github',
