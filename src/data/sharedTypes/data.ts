@@ -34,3 +34,8 @@ export type ProjectLinkType = {
 };
 
 export type TextSectionType = ParagraphType | ListType | ProjectLinkType;
+
+export type LinkType = {
+  title: string;
+  link: string;
+};
