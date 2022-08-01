@@ -32,7 +32,7 @@ export const ProjectsList: TextBlockType = {
     {
       type: 'a',
       content: {
-        github: 'https://github.com/jackbisceglia/internship-tracker',
+        github: 'https://github.com/jackbisceglia/apptrack',
         title: 'AppTrack.tech',
         live: 'https://apptrack.tech',
         year: 2022,
@@ -51,7 +51,7 @@ export const ProjectsList: TextBlockType = {
     {
       type: 'a',
       content: {
-        github: 'https://github.com/jackbisceglia/jackbisceglia.com',
+        github: 'https://github.com/jackbisceglia/jackbiscegliadotcom',
         title: 'jackbisceglia.com',
         live: '/',
         year: 2022,

@@ -56,10 +56,12 @@ const Projects: NextPage = () => {
         <LeftSection>
           <SectionTitle purple="Featured" white="Projects" />
           <ProjectCard
+            useGoSyntax={true}
             {...(Content.ProjectsList.body[0]
               .content as ProjectLinkContentType)}
           />
           <ProjectCard
+            useGoSyntax={false}
             {...(Content.ProjectsList.body[2]
               .content as ProjectLinkContentType)}
           />
@@ -78,22 +80,6 @@ const Projects: NextPage = () => {
         </RightSection>
       </RightColumn>
     </>
-  );
-};
-
-const LinkGrid: React.FC<{ links: LinkType[] }> = ({ links }) => {
-  return (
-    <div className={`w-full flex flex-wrap py-1`}>
-      {links.map(({ title, link }, idx) => (
-        <a
-          href={link}
-          key={idx}
-          className="pr-2 text-base font-light leading-5 text-left text-white transition-colors duration-100 ease-in-out sm:leading-snug sm:text-lg hover:text-purple-200"
-        >
-          {title}
-        </a>
-      ))}
-    </div>
   );
 };
 

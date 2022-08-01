@@ -8,12 +8,12 @@ export const IntroGreeting: TextBlockType = {
     {
       type: 'p',
       content:
-        "Hi, my name is Jack! I'm a Senior at UMass Amherst majoring in Computer Science. I'm passionate about Software Engineering; my interest is in web technology and the process of creating a fluent product for the end user.",
+        "Hi, my name is Jack! I'm a senior at UMass Amherst majoring in Computer Science. I'm passionate about Software Engineering; my interest is in web technology and the process of creating a fluent product for the end user.",
     },
     {
       type: 'p',
       content:
-        'In my free time I love Basketball (Go Celtics), making Hip Hop beats, and reading books (see my blog)!',
+        'In my free time, I love watching basketball (go Celtics), making hip hop beats, and reading books (see my blog)!',
     },
   ],
 };
@@ -27,7 +27,7 @@ export const TechInterests: TextBlockType = {
       type: 'ul',
       content: [
         'React* + Typescript for Client-Side Apps',
-        'Golang* or Typescipt for Server-side Tech',
+        'Golang* or Typescript for Server-side Tech',
         "Python whenever I don't know what else to use",
       ],
     },
@@ -42,15 +42,15 @@ export const Helpers: string[] = [
 export const Links = [
   {
     title: 'resume',
-    link: 'github.com',
+    link: '/JackBiscegliaResume2022.pdf',
   },
   {
     title: 'github',
-    link: 'linkedin.com',
+    link: 'https://github.com/jackbisceglia/',
   },
   {
     title: 'linkedin',
-    link: 'twitter.com',
+    link: 'https://www.linkedin.com/in/jackbisceglia/',
   },
   {
     title: 'apptrack',
@@ -92,7 +92,7 @@ const HubSpot: BulletType[] = [
   },
   {
     color: 'white',
-    text: "SWE Intern '21",
+    text: "SWE Co-op '21",
   },
 ];
 

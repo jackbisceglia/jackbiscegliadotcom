@@ -9,6 +9,7 @@ type ProjectCardProps = {
   descriptionBlocks?: string[];
   year?: number;
   techStack?: string[];
+  useGoSyntax: boolean;
 };
 const bgStyle = 'border-b-2 border-gray-300/10 bg-purple-900/40';
 
@@ -22,6 +23,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   descriptionBlocks,
   year,
   techStack,
+  useGoSyntax,
 }) => {
   const formatStack = (techStack: string[]) => {
     return techStack.map((t) => `"${t}"`).join(', ');
@@ -38,17 +40,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {year}
         </p>
       </div>
+      {}
       {descriptionBlocks!.map((description, idx) => (
         <p
           key={idx}
-          className="py-1 text-base font-normal leading-tight text-white  sm:text-base"
+          className="py-1 text-base font-normal leading-tight text-white sm:text-base"
         >
           {description}
         </p>
       ))}
-      <p className="py-2 font-mono text-sm tracking-tighter text-white  sm:text-sm">{`Tech := []string{${formatStack(
-        techStack!,
-      )}}`}</p>
+      {useGoSyntax ? (
+        <p className="py-2 font-mono text-sm tracking-tighter text-white sm:text-sm">{`const Tech: string[] = [${formatStack(
+          techStack!,
+        )}];`}</p>
+      ) : (
+        <p className="py-2 font-mono text-sm tracking-tighter text-white sm:text-sm">{`Tech := []string{${formatStack(
+          techStack!,
+        )}}`}</p>
+      )}
       <div className="flex mt-2">
         <Link href={github!}>
           <a className="py-0.5 pr-4 duration-100 ease-linear w-fit text-purple-400 hover:text-purple-200">

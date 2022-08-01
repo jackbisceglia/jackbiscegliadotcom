@@ -9,7 +9,10 @@ type EmbedChildren = {
   children: React.ReactNode;
 };
 
-const Column: React.FC<ColumnType> = ({ children, classSpecifics = '' }) => {
+export const Column: React.FC<ColumnType> = ({
+  children,
+  classSpecifics = '',
+}) => {
   const style = `flex flex-col w-full px-4 ${classSpecifics}`;
   return <div className={style}>{children}</div>;
 };
