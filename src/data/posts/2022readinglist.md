@@ -1,10 +1,10 @@
 ---
 title: What I Read in 2022
-date: 12/21/2022
+date: 12/31/2022
 genre: 'reading'
 slug: 2022readinglist
-summary: 'What I read in 2022'
-tags: ['Hello World']
+summary: 'Books I read in 2022'
+tags: ['reading']
 ---
 
 Here's a quick breakdown of the books I read this year:
@@ -127,5 +127,14 @@ Read: December 23rd - December 31st
 
 Rating: **7/10**
 
+---
+
+## Concluding
+
 Final Count: **15**
-Goal for 2023: 52
+
+Favorite: **The Sirens of Titan, Kurt Vonnegut**
+
+Least Favorite: **People We Meet on Vacation, Emily Henry**
+
+Goal for 2023: **52**

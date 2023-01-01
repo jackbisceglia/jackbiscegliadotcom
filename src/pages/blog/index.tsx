@@ -20,9 +20,11 @@ const fetchBlog = blogGetter(localAdapter());
 export const getServerSideProps = async () => {
   const postPaths = fetchBlog.getAll();
 
-  const postsMeta = postPaths.map((postPath) =>
-    fetchBlog.getMetaData(postPath.replace(/\.md$/, '')),
-  );
+  const postsMeta = postPaths
+    .map((postPath) => fetchBlog.getMetaData(postPath.replace(/\.md$/, '')))
+    .sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
 
   return {
     props: {
