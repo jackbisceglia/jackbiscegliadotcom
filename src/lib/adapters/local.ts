@@ -1,4 +1,4 @@
-import { Adapter, BlogPost, Genre } from '../blogMisc';
+import { Adapter, BlogPost, Tag } from '../blogMisc';
 
 import { blogMetaSchema } from '../zod';
 import fs from 'fs';
@@ -32,10 +32,10 @@ const localAdapter = function (): Adapter {
     } as BlogPost;
   };
 
-  const getBlogsByGenre = function (genre: Genre) {
+  const getBlogsByTag = function (tag: Tag) {
     return [
-      `This is a blog post about ${genre}`,
-      `This is another blog post about ${genre}`,
+      `This is a blog post about ${tag}`,
+      `This is another blog post about ${tag}`,
     ];
   };
 
@@ -58,7 +58,7 @@ const localAdapter = function (): Adapter {
     source: 'local',
     getBlogBySlug,
     getAll,
-    getBlogsByGenre,
+    getBlogsByTag,
     getMetaData,
   };
 };

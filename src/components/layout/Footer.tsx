@@ -16,7 +16,7 @@ function Footer() {
         />
       </div> */}
       <footer className="w-full py-1 text-sm font-normal text-center text-purple-400 ">
-        <h3 className="pb-4">jack bisceglia - 2022 🙏</h3>
+        <h3 className="pb-4">jack bisceglia - {new Date().getFullYear()} 🙏</h3>
       </footer>
     </>
   );

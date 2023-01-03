@@ -1,8 +1,8 @@
-export type Genre = 'cs' | 'reading' | 'sports';
+export type Tag = '' | 'cs' | 'reading' | 'sports';
 
 export type BlogPostMeta = {
   title: string;
-  genre: Genre;
+  tags: Tag[];
   slug: string;
   date: string;
 };
@@ -12,17 +12,10 @@ export type BlogPost = {
   content: string;
 };
 
-export type PostData = {
-  title: string;
-  genre: Genre;
-  slug: string;
-  date: string;
-};
-
 export type BlogGetter = {
   getBlogBySlug: (slug: string) => BlogPost;
   getAll: () => string[];
-  getBlogsByGenre: (genre: Genre) => string[];
+  getBlogsByTag: (tag: Tag) => string[];
   getMetaData: (slug: string) => BlogPostMeta;
 };
 

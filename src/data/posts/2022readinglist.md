@@ -1,10 +1,9 @@
 ---
 title: What I Read in 2022
 date: 12/31/2022
-genre: 'reading'
+tags: ['reading']
 slug: 2022readinglist
 summary: 'Books I read in 2022'
-tags: ['reading']
 ---
 
 Here's a quick breakdown of the books I read this year:

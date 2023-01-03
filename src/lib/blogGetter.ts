@@ -1,4 +1,4 @@
-import type { Adapter, BlogGetter, Genre } from './blogMisc';
+import type { Adapter, BlogGetter, Tag } from './blogMisc';
 
 const blogGetter = (adapter: Adapter): BlogGetter => {
   const getBlogBySlug = (slug: string) => {
@@ -9,8 +9,8 @@ const blogGetter = (adapter: Adapter): BlogGetter => {
     return adapter.getAll();
   };
 
-  const getBlogsByGenre = (genre: Genre) => {
-    return adapter.getBlogsByGenre(genre);
+  const getBlogsByTag = (genre: Tag) => {
+    return adapter.getBlogsByTag(genre);
   };
 
   const getMetaData = (slug: string) => {
@@ -20,7 +20,7 @@ const blogGetter = (adapter: Adapter): BlogGetter => {
   return {
     getBlogBySlug,
     getAll,
-    getBlogsByGenre,
+    getBlogsByTag,
     getMetaData,
   };
 };

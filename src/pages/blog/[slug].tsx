@@ -7,7 +7,6 @@ import {
 } from 'next';
 
 import Head from 'next/head';
-import { LeftColumn } from '../../components/layout/Columns';
 import Link from 'next/link';
 import blogGetter from '../../lib/blogGetter';
 import localAdapter from '../../lib/adapters/local';
@@ -19,6 +18,7 @@ export const getStaticProps = async (
   context: GetStaticPropsContext<{ slug: string }>,
 ) => {
   const { slug } = context.params ?? { slug: '' };
+  console.log(slug)
 
   const { content, data } = fetchBlog.getBlogBySlug(slug);
 
@@ -89,9 +89,7 @@ const BlogPost: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
         </p>
         <div className="flex gap-2">
           <p className="text-purple-400 lowercase">tags: </p>
-          <div className="px-2 rounded-md font-bold bg-purple-300">
-            {props.data.genre}
-          </div>
+            {props.data.tags.map((tag, i) => (<p key={i} className="px-3 rounded-md bg-purple-300" >{tag}</p>))}
         </div>
         <article
           // className={mdStyles['markdown']}

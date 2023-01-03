@@ -2,7 +2,7 @@ import z from 'zod';
 
 export const blogMetaSchema = z.object({
   title: z.string(),
-  genre: z.enum(['cs', 'reading', 'sports']),
+  tag: z.array(z.enum(["reading", "cs", "sports"])).optional(),
   slug: z.string(),
   date: z.string(),
 });
