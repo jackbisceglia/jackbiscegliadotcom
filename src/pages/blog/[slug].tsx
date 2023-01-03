@@ -18,7 +18,6 @@ export const getStaticProps = async (
   context: GetStaticPropsContext<{ slug: string }>,
 ) => {
   const { slug } = context.params ?? { slug: '' };
-  console.log(slug)
 
   const { content, data } = fetchBlog.getBlogBySlug(slug);
 

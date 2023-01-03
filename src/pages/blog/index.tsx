@@ -46,7 +46,7 @@ const BlogCard = (meta: BlogPostMeta) => {
         <div className="flex w-full items-start justify-between">
           <p className="text-xl text-white font-bold">{meta.title}</p>
         </div>
-        <p className="text-base text-purple-400">
+        <p className="text-base text-purple-400 lowercase1">
           posted on {formatDate(meta.date)}
         </p>
         <div>
