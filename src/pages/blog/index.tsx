@@ -74,7 +74,7 @@ const Blog: NextPage<
   return (
     <>
       <Head>
-        <title>Projects - Jack B</title>
+        <title>Blog - Jack B</title>
         <meta name="description" content="Check out the blog!" />
         <link
           rel="icon"
