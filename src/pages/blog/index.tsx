@@ -69,7 +69,7 @@ const Blog: NextPage<
   const selectStyles = "bg-purple-700 text-left"
   const [filter, setFilter] = useState<Tag>("")
   
-  const filteredPosts = useMemo(() => posts.filter((post: BlogPostMeta) => filter === "" || post.tags.includes(filter)), [filter])
+  const filteredPosts = useMemo(() => posts.filter((post: BlogPostMeta) => filter === "" || post.tags.includes(filter)), [posts, filter])
 
   return (
     <>
