@@ -3,16 +3,16 @@ import {
   InferGetServerSidePropsType,
   NextPage,
 } from 'next';
-
-import { BlogPostMeta, Tag } from '../../lib/blogMisc';
 import Head from 'next/head';
 import Link from 'next/link';
-import SectionTitle from '../../components/SectionTitle';
-import blogGetter from '../../lib/blogGetter';
-import { formatDate } from './[slug]';
-import localAdapter from '../../lib/adapters/local';
 import { useRouter } from 'next/router';
 import { useMemo, useState } from 'react';
+
+import SectionTitle from '../../components/SectionTitle';
+import localAdapter from '../../lib/adapters/local';
+import blogGetter from '../../lib/blogGetter';
+import { BlogPostMeta, Tag } from '../../lib/blogMisc';
+import { formatDate } from './[slug]';
 
 const fetchBlog = blogGetter(localAdapter());
 
@@ -50,8 +50,11 @@ const BlogCard = (meta: BlogPostMeta) => {
           posted on {formatDate(meta.date)}
         </p>
         <div>
-
-            {meta.tags.map((tag, i) => (<p key={i} className="px-3 rounded-md bg-purple-300 w-min" >{tag}</p>))}
+          {meta.tags.map((tag, i) => (
+            <p key={i} className="px-3 rounded-md bg-purple-300 w-min">
+              {tag}
+            </p>
+          ))}
         </div>
       </div>
     </Link>
@@ -59,17 +62,24 @@ const BlogCard = (meta: BlogPostMeta) => {
 };
 
 const NoBlogPosts = () => {
-  return <h1 className="text-purple-400 font-bold text-xl py-4">No Blog Posts</h1>
-}
-
+  return (
+    <h1 className="text-purple-400 font-bold text-xl py-4">No Blog Posts</h1>
+  );
+};
 
 const Blog: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ posts }) => {
-  const selectStyles = "bg-purple-700 text-left"
-  const [filter, setFilter] = useState<Tag>("")
-  
-  const filteredPosts = useMemo(() => posts.filter((post: BlogPostMeta) => filter === "" || post.tags.includes(filter)), [posts, filter])
+  const selectStyles = 'bg-purple-700 text-left';
+  const [filter, setFilter] = useState<Tag>('');
+
+  const filteredPosts = useMemo(
+    () =>
+      posts.filter(
+        (post: BlogPostMeta) => filter === '' || post.tags.includes(filter),
+      ),
+    [posts, filter],
+  );
 
   return (
     <>
@@ -83,26 +93,35 @@ const Blog: NextPage<
       </Head>
       <div className="w-full flex flex-col justify-start items-center gap-4">
         <SectionTitle white="Blog" purple="Jack's" />
-        <div className='flex text-base justify-center items-center gap-3'>
+        <div className="flex text-base justify-center items-center gap-3">
           <h3 className="text-purple-400">filter:</h3>
-          <select onChange={(e) => setFilter(e.target.value as Tag)} className="rounded-md bg-transparent text-white  px-3 border-[1px] border-purple-400 outline-1 outline-purple-400 decoration-purple-400 p-1 text-left">
-            <option value="" className={selectStyles}>none</option>
-            <option value="cs" className={selectStyles}>cs</option>
-            <option className={selectStyles} value="reading">reading</option>
-            <option className={selectStyles} value="sports">sports</option>
+          <select
+            onChange={(e) => setFilter(e.target.value as Tag)}
+            className="rounded-md bg-transparent text-white  px-3 border-[1px] border-purple-400 outline-1 outline-purple-400 decoration-purple-400 p-1 text-left"
+          >
+            <option value="" className={selectStyles}>
+              none
+            </option>
+            <option value="cs" className={selectStyles}>
+              cs
+            </option>
+            <option className={selectStyles} value="reading">
+              reading
+            </option>
+            <option className={selectStyles} value="sports">
+              sports
+            </option>
           </select>
         </div>
-        {
-          filteredPosts.length ? 
-
-        <div className="grid w-full max-w-screen-xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 py-8">
-          {filteredPosts.map((post) => (
-            <BlogCard key={post.date} {...post} />
-          ))}
-        </div>
-        :
-        <NoBlogPosts/>
-        }
+        {filteredPosts.length ? (
+          <div className="grid w-full max-w-screen-xl grid-cols-1 gap-6 sm:grid-cols-2 py-8">
+            {filteredPosts.map((post) => (
+              <BlogCard key={post.date} {...post} />
+            ))}
+          </div>
+        ) : (
+          <NoBlogPosts />
+        )}
       </div>
     </>
   );
