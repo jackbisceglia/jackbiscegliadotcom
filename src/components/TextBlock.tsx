@@ -61,16 +61,18 @@ const ProjectLinkSection: React.FC<ProjectLinkSectionTypes> = ({
         {year}
       </p>
     </div>
-    <Link href={github}>
-      <a className="py-0.5 duration-100 ease-linear w-fit text-purple-50 hover:text-purple-200">
-        GitHub Repo
-      </a>
+    <Link
+      className="py-0.5 duration-100 ease-linear w-fit text-purple-50 hover:text-purple-200"
+      href={github}
+    >
+      GitHub Repo
     </Link>
     {live && (
-      <Link href={live}>
-        <a className="duration-100 py-0.5 ease-linear w-fit text-purple-50 hover:text-purple-200">
-          Live Site
-        </a>
+      <Link
+        className="py-0.5 duration-100 ease-linear w-fit text-purple-50 hover:text-purple-200"
+        href={live}
+      >
+        Live Site
       </Link>
     )}
   </div>

@@ -1,7 +1,5 @@
 import Link from 'next/link';
 
-import { AppTrackDescription } from '../data/content/projects';
-
 type ProjectCardProps = {
   github?: string;
   live?: string;
@@ -59,16 +57,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         )}}`}</p>
       )}
       <div className="flex mt-2">
-        <Link href={github!}>
-          <a className="py-0.5 pr-4 duration-100 ease-linear w-fit text-purple-400 hover:text-purple-200">
-            GitHub Repo
-          </a>
+        <Link
+          className="duration-100 py-0.5 ease-linear w-fit text-purple-400 hover:text-purple-200"
+          href={github!}
+        >
+          GitHub Repo
         </Link>
         {live && (
-          <Link href={live}>
-            <a className="duration-100 py-0.5 ease-linear w-fit text-purple-400 hover:text-purple-200">
-              Live Site
-            </a>
+          <Link
+            className="duration-100 py-0.5 ease-linear w-fit text-purple-400 hover:text-purple-200"
+            href={live}
+          >
+            Live Site
           </Link>
         )}
       </div>

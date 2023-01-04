@@ -5,11 +5,11 @@ import {
   InferGetStaticPropsType,
   NextPage,
 } from 'next';
-
 import Head from 'next/head';
 import Link from 'next/link';
-import blogGetter from '../../lib/blogGetter';
+
 import localAdapter from '../../lib/adapters/local';
+import blogGetter from '../../lib/blogGetter';
 import markdownToHtml from '../../lib/markdownToHtml';
 
 const fetchBlog = blogGetter(localAdapter());
@@ -57,11 +57,12 @@ export const formatDate = (date: string) => {
   return dateObj.toDateString();
 };
 
-const BackToBlogsButton = () => (
-  <Link href="/blog">
-    <a className="text-sm text-purple-400 px-4 py-2 hover:bg-purple-900 rounded-md duration-100 transition-all">
-      {'< back to blogs'}
-    </a>
+export const BackToBlogsButton = () => (
+  <Link
+    className="text-sm text-purple-400 px-4 py-2 hover:bg-black/30 underline rounded-md duration-100 transition-all"
+    href="/blog"
+  >
+    {'< back to blogs'}
   </Link>
 );
 
@@ -88,7 +89,11 @@ const BlogPost: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
         </p>
         <div className="flex gap-2">
           <p className="text-purple-400 lowercase">tags: </p>
-            {props.data.tags.map((tag, i) => (<p key={i} className="px-3 rounded-md bg-purple-300" >{tag}</p>))}
+          {props.data.tags.map((tag, i) => (
+            <p key={i} className="px-3 rounded-md bg-purple-300">
+              {tag}
+            </p>
+          ))}
         </div>
         <article
           // className={mdStyles['markdown']}

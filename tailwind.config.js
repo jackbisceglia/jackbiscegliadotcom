@@ -10,7 +10,7 @@ module.exports = {
         'main-bg': "url('/images/background.png')",
       },
       colors: {
-        navbar: 'rgba(17, 8, 31, 0.25)',
+        navbar: 'rgba(17, 8, 31, 0.3)',
         purple: {
           50: '#f5e5ff',
           100: '#dab7fd',
