@@ -23,6 +23,15 @@ module.exports = {
           800: '#27044a',
           900: '#0f001e',
         },
+        coolmint: {
+          200: "#E5EEEB",
+          300: "#C7CECC",
+          400: "#5F7D76",
+          500: "#88EFE0",
+          600: "#1BA894",
+          700: "#131818",
+          800: "#0B0D0D",
+        }
       },
       fontFamily: {
         sans: ['Raleway', ...defaultTheme.fontFamily.sans],

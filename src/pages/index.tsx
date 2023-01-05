@@ -16,7 +16,7 @@ const SectionWrapper = ({
 
 const SectionHeader = ({ children }: { children: React.ReactNode }) => {
   return (
-    <h1 className="py-0.5 text-4xl font-extrabold text-purple-400 sm:text-4xl">
+    <h1 className="py-0.5 text-4xl font-extrabold text-coolmint-600 sm:text-4xl">
       {children}
     </h1>
   );
@@ -27,7 +27,7 @@ const ImageWrapper = ({ children }: { children: React.ReactNode }) => {
 };
 
 const SectionParagraph = ({ children }: { children: React.ReactNode }) => {
-  return <p className="text-gray-300 text-lg font-normal">{children}</p>;
+  return <p className="text-neutral-200 text-lg font-normal">{children}</p>;
 };
 
 const SectionList = ({
@@ -38,7 +38,7 @@ const SectionList = ({
   className?: string;
 }) => {
   return (
-    <div className={'text-gray-300 text-lg font-normal ' + className}>
+    <div className={'text-neutral-200 text-lg font-normal ' + className}>
       {children}
     </div>
   );
@@ -50,7 +50,7 @@ const SocialLinks = () => {
       <li>
         <Link
           target="_blank"
-          className="hover:underline hover:text-white py-1"
+          className="hover:underline hover:text-neutral-50 py-1"
           href="/2022JackBiscegliaResume.pdf"
         >
           resume
@@ -59,7 +59,7 @@ const SocialLinks = () => {
       <li>
         <Link
           target="_blank"
-          className="hover:underline hover:text-white py-1"
+          className="hover:underline hover:text-neutral-50 py-1"
           href="https://github.com/jackbisceglia/"
         >
           github
@@ -68,7 +68,7 @@ const SocialLinks = () => {
       <li>
         <Link
           target="_blank"
-          className="hover:underline hover:text-white py-1"
+          className="hover:underline hover:text-neutral-50 py-1"
           href="https://www.linkedin.com/in/jackbisceglia/"
         >
           linkedin
@@ -77,7 +77,7 @@ const SocialLinks = () => {
       <li>
         <Link
           target="_blank"
-          className="hover:underline hover:text-white py-1"
+          className="hover:underline hover:text-neutral-50 py-1"
           href="https://www.goodreads.com/user/show/133940656-jack-bisceglia"
         >
           goodreads
@@ -109,7 +109,7 @@ const Home: NextPage = () => {
               <Image
                 src="/images/ggbridge.jpg"
                 alt="me"
-                className="rounded-full border-2 border-purple-500 object-cover"
+                className="rounded-full border-2 border-coolmint-500 object-cover"
                 fill={true}
               />
             </ImageWrapper>
@@ -131,7 +131,7 @@ const Home: NextPage = () => {
           {/* LEFT SIDE */}
           <div className="flex flex-col w-1/2 gap-4">
             <SectionHeader>
-              Tech <span className="font-normal text-white">Interests</span>
+              Tech <span className="font-normal text-white">Interests</span> 👨‍💻
             </SectionHeader>
             <SectionParagraph>
               im interested in learning new things and building cool stuff:
@@ -139,20 +139,20 @@ const Home: NextPage = () => {
             <SectionList>
               <ul className="list-inside list-disc font-normal">
                 <li>
-                  <span className="text-purple-400">client side:</span> react
+                  <span className="text-coolmint-500">client side:</span> react
                   and typeScript
                 </li>
               </ul>
               <li>
-                <span className="text-purple-400">server side:</span> typescript
-                or go
+                <span className="text-coolmint-500">server side:</span>{' '}
+                typescript or go
               </li>
               <li>
-                <span className="text-purple-400">otherwise:</span> probably
+                <span className="text-coolmint-500">otherwise:</span> probably
                 python
               </li>
             </SectionList>
-            <div className="text-purple-400 text-base">
+            <div className="text-coolmint-500 text-base">
               <p>*still learning golang*</p>
               <p>*i also think svelte is pretty cool*</p>
             </div>
@@ -160,20 +160,20 @@ const Home: NextPage = () => {
           {/* RIGHT SIDE */}
           <div className="flex flex-col w-1/2 gap-4">
             <SectionHeader>
-              More <span className="font-normal text-white">Stuff</span>
+              More <span className="font-normal text-white">Stuff</span> 🔗
             </SectionHeader>
             <SectionList>
               <SocialLinks />
             </SectionList>
             <SectionList className="flex flex-col gap-2">
               <p>favorite repos:</p>
-              <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md border-[1px] border-purple-600 bg-purple-700/20 hover:bg-purple-700/50 cursor-pointer py-2 px-4 shadow-lg ">
+              <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
                 apptrack.tech
               </div>
-              <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md border-[1px] border-purple-600 bg-purple-700/20 hover:bg-purple-700/50 cursor-pointer py-2 px-4 shadow-lg ">
+              <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
                 letsth.ink
               </div>
-              <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md border-[1px] border-purple-600 bg-purple-700/20 hover:bg-purple-700/50 cursor-pointer py-2 px-4 shadow-lg ">
+              <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
                 mmapicks
               </div>
             </SectionList>
@@ -181,41 +181,41 @@ const Home: NextPage = () => {
         </SectionWrapper>
         <SectionWrapper>
           <SectionHeader>
-            Best <span className="font-normal text-white">Blogs</span>
+            Best <span className="font-normal text-white">Blogs</span> ✍️
           </SectionHeader>
           <Link href="/blog/2023technologies">
-            <div className="flex h-full flex-col justify-start gap-2 rounded-xl border-[1px] border-purple-600 bg-purple-700/20 hover:bg-purple-700/50 cursor-pointer p-5  shadow-lg  transition-colors duration-75 ">
+            <div className="group transition-all duration-200 ease-in-out hover:pl-8 hover:underline flex h-full flex-col justify-start gap-2 rounded-lg bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer p-5  shadow-lg">
               <div className="flex w-full items-start justify-between">
-                <p className="text-xl text-white font-bold">
+                <p className="text-xl group-hover:underline text-white font-bold">
                   technologies i want to learn in 2023
                 </p>
               </div>
-              <p className="text-base text-purple-400 lowercase1">
+              <p className="text-base text-coolmint-500 lowercase">
                 posted on x x x
               </p>
               <div>
-                <p className="px-3 rounded-md bg-purple-300 w-min">cs</p>
+                <p className="px-3 rounded-md bg-coolmint-500 w-min">cs</p>
               </div>
             </div>
           </Link>
           <Link href="/blog/2023technologies">
-            <div className="flex h-full flex-col justify-start gap-2 rounded-xl border-[1px] border-purple-600 bg-purple-700/20 hover:bg-purple-700/50 cursor-pointer p-5  shadow-lg  transition-colors duration-75 ">
+            <div className="group transition-all duration-200 ease-in-out hover:pl-8 hover:underline flex h-full flex-col justify-start gap-2 rounded-lg bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer p-5  shadow-lg">
               <div className="flex w-full items-start justify-between">
-                <p className="text-xl text-white font-bold">
+                <p className="text-xl group-hover:underline text-white font-bold">
                   technologies i want to learn in 2023
                 </p>
               </div>
-              <p className="text-base text-purple-400 lowercase1">
+              <p className="text-base text-coolmint-500 lowercase">
                 posted on x x x
               </p>
               <div>
-                <p className="px-3 rounded-md bg-purple-300 w-min">cs</p>
+                <p className="px-3 rounded-md bg-coolmint-500 w-min">cs</p>
               </div>
             </div>
           </Link>
 
           <Link
-            className="w-fit text-purple-400 underline px-4 py-2 hover:bg-black/30 rounded-md duration-100 transition-all"
+            className="w-fit text-coolmint-500 underline px-4 py-2 hover:bg-coolmint-700/10 hover:border-coolmint-700 border-2 border-coolmint-800 rounded-md duration-100 transition-all"
             href="/blog"
           >
             {'more blogs >'}
