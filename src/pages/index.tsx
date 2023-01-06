@@ -1,33 +1,51 @@
-import type { NextPage } from 'next';
+import {
+  ArrowRightIcon,
+  BookmarkFilledIcon,
+  FileTextIcon,
+  GitHubLogoIcon,
+  LinkedInLogoIcon,
+} from '@radix-ui/react-icons';
+import type { InferGetServerSidePropsType, NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
+const style_defaults = {
+  section_gap: 'gap-10',
+  content_gap: 'gap-4',
+};
+
+const Divider = () => <hr className="border-coolmint-700" />;
+
 const SectionWrapper = ({
   children,
   flexDirection = 'flex-col',
+  gap = style_defaults.content_gap,
 }: {
   children: React.ReactNode;
-  flexDirection?: 'flex-col' | 'flex-row';
+  flexDirection?: string;
+  gap?: string;
 }) => {
-  return <div className={`flex ${flexDirection} gap-4`}>{children}</div>;
+  return <div className={`flex ${flexDirection} ${gap}`}>{children}</div>;
 };
 
 const SectionHeader = ({ children }: { children: React.ReactNode }) => {
   return (
-    <h1 className="py-0.5 text-4xl font-extrabold text-coolmint-600 sm:text-4xl">
+    <h1 className="py-1 text-3xl font-bold text-coolmint-600 sm:text-4xl">
       {children}
     </h1>
   );
 };
 
 const ImageWrapper = ({ children }: { children: React.ReactNode }) => {
-  return <div className="relative z-0 h-20 w-20">{children}</div>;
+  return (
+    <div className="relative z-0 sm:h-20 sm:w-20 w-14 h-14">{children}</div>
+  );
 };
 
 const SectionParagraph = ({ children }: { children: React.ReactNode }) => {
-  return <p className="text-neutral-200 text-lg font-normal">{children}</p>;
+  return <p className="text-neutral-200 sm:text-lg font-normal">{children}</p>;
 };
 
 const SectionList = ({
@@ -38,56 +56,66 @@ const SectionList = ({
   className?: string;
 }) => {
   return (
-    <div className={'text-neutral-200 text-lg font-normal ' + className}>
+    <div className={'text-neutral-200 sm:text-lg font-normal ' + className}>
       {children}
     </div>
   );
 };
 
-const SocialLinks = () => {
+export const SocialLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => {
+  const LinkStyle =
+    'flex justify-center items-center gap-2 lg:gap-1 hover:text-coolmint-500 hover:underline py-1 transition-all duration-200 ease-in-out ';
   return (
-    <ul className="flex w-full justify-start gap-4 text-left underline-offset-2 ">
-      <li>
-        <Link
-          target="_blank"
-          className="hover:underline hover:text-neutral-50 py-1"
-          href="/2022JackBiscegliaResume.pdf"
-        >
-          resume
-        </Link>
-      </li>
-      <li>
-        <Link
-          target="_blank"
-          className="hover:underline hover:text-neutral-50 py-1"
-          href="https://github.com/jackbisceglia/"
-        >
-          github
-        </Link>
-      </li>
-      <li>
-        <Link
-          target="_blank"
-          className="hover:underline hover:text-neutral-50 py-1"
-          href="https://www.linkedin.com/in/jackbisceglia/"
-        >
-          linkedin
-        </Link>
-      </li>
-      <li>
-        <Link
-          target="_blank"
-          className="hover:underline hover:text-neutral-50 py-1"
-          href="https://www.goodreads.com/user/show/133940656-jack-bisceglia"
-        >
-          goodreads
-        </Link>
-      </li>
-    </ul>
+    <li className="mr-auto">
+      <Link target="_blank" className={LinkStyle} href={href}>
+        {children}
+      </Link>
+    </li>
   );
 };
 
-const Home: NextPage = () => {
+const BlogCard = ({
+  title,
+  date,
+  tags,
+}: {
+  title: string;
+  date: string;
+  tags: string[];
+}) => {
+  return (
+    <Link href="/blog/2023technologies">
+      <div className="lowercase group transition-all duration-200 ease-in-out hover:pl-8 flex h-full flex-col justify-start gap-2 rounded-lg bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer p-5  shadow-lg">
+        <div className="flex w-full items-start justify-between">
+          <p className="text-base sm:text-xl group-hover:underline text-white font-bold">
+            {title}
+          </p>
+        </div>
+        <p className="text-sm text-coolmint-500 lowercase">posted on {date}</p>
+        <div className="flex gap-2">
+          {tags.map((tag) => (
+            <p
+              key={tag}
+              className="px-2 rounded-md text-xs bg-coolmint-500 w-min"
+            >
+              {tag}
+            </p>
+          ))}
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
+  props,
+) => {
   return (
     <>
       <Head>
@@ -101,7 +129,7 @@ const Home: NextPage = () => {
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☘️</text></svg>"
         />
       </Head>
-      <div className="flex flex-col gap-8">
+      <div className={`flex flex-col ${style_defaults.section_gap}`}>
         {/* INTRODUCTION SECTION */}
         <SectionWrapper>
           <div className="flex gap-4 w-full h-full items-center ">
@@ -118,8 +146,18 @@ const Home: NextPage = () => {
             </SectionHeader>
           </div>
           <SectionParagraph>
-            hi, im a senior at umass amherst majoring in computer science. im
-            passionate about software engineering, and building web systems.
+            hi, im a senior at <strong>umass amherst</strong> majoring in
+            computer science, and im passionate about software engineering and
+            building web systems. recently, i've interned at{' '}
+            <strong>salesforce</strong> and <strong>hubspot</strong> working as
+            a software engineer! currently working on{' '}
+            <Link
+              className="underline hover:text-coolmint-500"
+              href="https://apptrack.tech"
+            >
+              apptrack
+            </Link>
+            🙂.
           </SectionParagraph>
           <SectionParagraph>
             in my free time, i love watching basketball (go celtics), making hip
@@ -127,14 +165,17 @@ const Home: NextPage = () => {
           </SectionParagraph>
         </SectionWrapper>
         {/* MIDDLE SECTION */}
-        <SectionWrapper flexDirection="flex-row">
+        <SectionWrapper
+          flexDirection="flex-col lg:flex-row"
+          gap={style_defaults.section_gap}
+        >
           {/* LEFT SIDE */}
-          <div className="flex flex-col w-1/2 gap-4">
+          <div className="flex flex-col w-full lg:w-1/2 gap-4">
             <SectionHeader>
               Tech <span className="font-normal text-white">Interests</span> 👨‍💻
             </SectionHeader>
             <SectionParagraph>
-              im interested in learning new things and building cool stuff:
+              always learning things and building stuff
             </SectionParagraph>
             <SectionList>
               <ul className="list-inside list-disc font-normal">
@@ -142,88 +183,119 @@ const Home: NextPage = () => {
                   <span className="text-coolmint-500">client side:</span> react
                   and typeScript
                 </li>
+                <li>
+                  <span className="text-coolmint-500">server side:</span>{' '}
+                  typescript or go
+                </li>
+                <li>
+                  <span className="text-coolmint-500">otherwise:</span> probably
+                  python
+                </li>
               </ul>
-              <li>
-                <span className="text-coolmint-500">server side:</span>{' '}
-                typescript or go
-              </li>
-              <li>
-                <span className="text-coolmint-500">otherwise:</span> probably
-                python
-              </li>
             </SectionList>
-            <div className="text-coolmint-500 text-base">
+            <div className="text-coolmint-400 text-sm sm:text-base">
               <p>*still learning golang*</p>
               <p>*i also think svelte is pretty cool*</p>
             </div>
           </div>
           {/* RIGHT SIDE */}
-          <div className="flex flex-col w-1/2 gap-4">
+          <div className="flex flex-col w-full lg:w-1/2 gap-4">
             <SectionHeader>
               More <span className="font-normal text-white">Stuff</span> 🔗
             </SectionHeader>
             <SectionList>
-              <SocialLinks />
+              <ul className="grid grid-rows-2  grid-flow-col text-left w-full">
+                <SocialLink href="/2022JackBiscegliaResume.pdf">
+                  <FileTextIcon />
+                  resume
+                </SocialLink>
+                <SocialLink href="https://github.com/jackbisceglia/">
+                  <GitHubLogoIcon />
+                  github
+                </SocialLink>
+                <SocialLink href="https://www.linkedin.com/in/jackbisceglia/">
+                  <LinkedInLogoIcon />
+                  linkedin
+                </SocialLink>
+                <SocialLink href="https://www.goodreads.com/user/show/133940656-jack-bisceglia">
+                  <BookmarkFilledIcon />
+                  goodreads
+                </SocialLink>
+              </ul>
             </SectionList>
             <SectionList className="flex flex-col gap-2">
               <p>favorite repos:</p>
               <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
-                apptrack.tech
+                <Link
+                  href="https://github.com/jackbisceglia/apptrack"
+                  target="_blank"
+                >
+                  apptrack.tech 🚀{' '}
+                </Link>
               </div>
               <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
-                letsth.ink
+                <Link
+                  href="https://github.com/LinkFrost/letsthink"
+                  target="_blank"
+                >
+                  letsth.ink 💡
+                </Link>
               </div>
-              <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
-                mmapicks
-              </div>
+              {/* <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
+                mmapicks 🥊
+              </div> */}
             </SectionList>
           </div>
         </SectionWrapper>
+        <Divider />
         <SectionWrapper>
           <SectionHeader>
             Best <span className="font-normal text-white">Blogs</span> ✍️
           </SectionHeader>
-          <Link href="/blog/2023technologies">
-            <div className="group transition-all duration-200 ease-in-out hover:pl-8 hover:underline flex h-full flex-col justify-start gap-2 rounded-lg bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer p-5  shadow-lg">
-              <div className="flex w-full items-start justify-between">
-                <p className="text-xl group-hover:underline text-white font-bold">
-                  technologies i want to learn in 2023
-                </p>
-              </div>
-              <p className="text-base text-coolmint-500 lowercase">
-                posted on x x x
-              </p>
-              <div>
-                <p className="px-3 rounded-md bg-coolmint-500 w-min">cs</p>
-              </div>
-            </div>
-          </Link>
-          <Link href="/blog/2023technologies">
-            <div className="group transition-all duration-200 ease-in-out hover:pl-8 hover:underline flex h-full flex-col justify-start gap-2 rounded-lg bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer p-5  shadow-lg">
-              <div className="flex w-full items-start justify-between">
-                <p className="text-xl group-hover:underline text-white font-bold">
-                  technologies i want to learn in 2023
-                </p>
-              </div>
-              <p className="text-base text-coolmint-500 lowercase">
-                posted on x x x
-              </p>
-              <div>
-                <p className="px-3 rounded-md bg-coolmint-500 w-min">cs</p>
-              </div>
-            </div>
-          </Link>
-
+          {props.bestBlogs.map((blog) => (
+            <BlogCard
+              key={blog.slug}
+              title={blog.title}
+              date={blog.date}
+              tags={blog.tags}
+            />
+          ))}
           <Link
-            className="w-fit text-coolmint-500 underline px-4 py-2 hover:bg-coolmint-700/10 hover:border-coolmint-700 border-2 border-coolmint-800 rounded-md duration-100 transition-all"
+            className="flex hover:underline flex-start px-2 items-center gap-1 text-neutral-200 hover:text-coolmint-500  py-1 transition-all duration-200 ease-in-out"
             href="/blog"
           >
-            {'more blogs >'}
+            {'read more blogs'}
+            <ArrowRightIcon />
           </Link>
         </SectionWrapper>
       </div>
     </>
   );
+};
+
+export const getServerSideProps = async () => {
+  const getBestBlogs = () => [
+    {
+      title: 'Technologies I Want to Learn in 2023',
+      date: 'jan 02, 2023',
+      tags: ['cs'],
+      slug: '2023technologies',
+    },
+    {
+      title: 'What I Read in 2022',
+      date: 'dec 31, 2022',
+      tags: ['reading'],
+      slug: 'whatireadin2022',
+    },
+  ];
+
+  console.log(getBestBlogs());
+
+  return {
+    props: {
+      bestBlogs: getBestBlogs(),
+    },
+  };
 };
 
 export default Home;
