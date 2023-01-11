@@ -21,7 +21,7 @@ export const SocialLink = ({
   children: React.ReactNode;
 }) => {
   const LinkStyle =
-    'flex justify-center items-center gap-2 lg:gap-2 hover:text-coolmint-500 hover:underline py-1 transition-all duration-200 ease-in-out ';
+    'flex justify-start items-center gap-2 text-neutral-200 hover:text-coolmint-500 hover:underline';
   return (
     <li className="mr-auto">
       <Link
@@ -37,12 +37,11 @@ export const SocialLink = ({
 
 function Footer() {
   return (
-    <footer className="flex flex-col gap-8 justify-center items-center py-8  w-full text-md font-extralight text-center  mt-auto border-t border-coolmint-300/20 bg-coolmint-700">
-      {/* <nav className="flex justify-between my-0 mx-auto max-w-[900px] gap-12"> */}
-      <nav className="flex flex-col my-0 mx-auto max-w-[900px]">
-        <div className="flex flex-col text-left p-3">
-          <p className="text-neutral-100 font-extrabold py-1">links 🔗</p>
-          <ul className="grid grid-cols-2 grid-rows-2 gap-x-6 lg:flex lg:gap-8 lg:flex-wrap text-neutral-200 text-left w-full mx-auto">
+    <footer className="flex flex-col w-full gap-8 px-6 py-12 mt-auto text-sm break-words border-t bg-coolmint-700 border-coolmint-300/20">
+      <nav className="flex flex-col gap-4 mx-auto text-neutral-200">
+        <div className="flex flex-col">
+          <p className="py-1 font-extrabold">links 🔗</p>
+          <ul className="grid grid-cols-2 gap-x-[7vw] lg:flex lg:justify-start lg:gap-[2.5vw]">
             <SocialLink href="/blog">
               <CrumpledPaperIcon />
               blog
@@ -61,38 +60,30 @@ function Footer() {
             </SocialLink>
           </ul>
         </div>
-        <div className="flex flex-col text-left p-3">
-          <p className="text-neutral-100 font-extrabold py-1">find me 📍</p>
-          <ul className="grid grid-cols-2 grid-rows-2 gap-x-6 lg:flex lg:gap-8 lg:flex-wrap text-neutral-200 text-left w-full mx-auto">
-            <SocialLink href="/2022JackBiscegliaResume.pdf" goToNewPage={true}>
+        {/* <p className="py-1 font-extrabold">connect 📍</p> */}
+        <div className="flex flex-col">
+          <p className="py-1 font-extrabold">connect 📍</p>
+          <ul className="grid grid-cols-2 gap-x-[4vw] lg:flex lg:justify-start lg:gap-[2.5vw]">
+            <SocialLink href="/">
               <FileTextIcon />
               resume
             </SocialLink>
-            <SocialLink
-              href="https://github.com/jackbisceglia/"
-              goToNewPage={true}
-            >
+            <SocialLink href="/">
               <GitHubLogoIcon />
               github
             </SocialLink>
-            <SocialLink
-              href="https://www.linkedin.com/in/jackbisceglia/"
-              goToNewPage={true}
-            >
+            <SocialLink href="/">
               <LinkedInLogoIcon />
               linkedin
             </SocialLink>
-            <SocialLink
-              href="https://www.goodreads.com/user/show/133940656-jack-bisceglia"
-              goToNewPage={true}
-            >
+            <SocialLink href="/">
               <BookmarkFilledIcon />
               goodreads
             </SocialLink>
           </ul>
         </div>
       </nav>
-      <h3 className="text-coolmint-200 font-extralight">
+      <h3 className="py-1 mx-auto text-coolmint-200 font-extralight">
         jack bisceglia • {new Date().getFullYear()} 🙏
       </h3>
     </footer>

@@ -16,7 +16,7 @@ const style_defaults = {
   content_gap: 'gap-4',
 };
 
-const Divider = () => <hr className="border-coolmint-700" />;
+export const Divider = () => <hr className="border-coolmint-700" />;
 
 const SectionWrapper = ({
   children,
@@ -32,7 +32,7 @@ const SectionWrapper = ({
 
 const SectionHeader = ({ children }: { children: React.ReactNode }) => {
   return (
-    <h1 className="py-1 text-3xl font-bold text-coolmint-600 sm:text-4xl">
+    <h1 className="py-1 text-3xl font-extrabold text-coolmint-600 sm:text-4xl">
       {children}
     </h1>
   );
@@ -45,7 +45,7 @@ const ImageWrapper = ({ children }: { children: React.ReactNode }) => {
 };
 
 const SectionParagraph = ({ children }: { children: React.ReactNode }) => {
-  return <p className="text-neutral-200 sm:text-lg font-normal">{children}</p>;
+  return <p className="font-normal text-neutral-200 sm:text-lg ">{children}</p>;
 };
 
 const SectionList = ({
@@ -70,7 +70,7 @@ export const SocialLink = ({
   children: React.ReactNode;
 }) => {
   const LinkStyle =
-    'flex justify-center items-center gap-2 lg:gap-1 hover:text-coolmint-500 hover:underline py-1 transition-all duration-200 ease-in-out ';
+    'flex justify-center items-center gap-2  hover:text-coolmint-500 hover:underline py-1 transition-all duration-200 ease-in-out ';
   return (
     <li className="mr-auto">
       <Link target="_blank" className={LinkStyle} href={href}>
@@ -84,25 +84,27 @@ const BlogCard = ({
   title,
   date,
   tags,
+  slug,
 }: {
   title: string;
   date: string;
   tags: string[];
+  slug: string;
 }) => {
   return (
-    <Link href="/blog/2023technologies">
-      <div className="lowercase group transition-all duration-200 ease-in-out hover:pl-8 flex h-full flex-col justify-start gap-2 rounded-lg bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer p-5  shadow-lg">
-        <div className="flex w-full items-start justify-between">
-          <p className="text-base sm:text-xl group-hover:underline text-white font-bold">
+    <Link href={`/blog/${slug}`}>
+      <div className="flex flex-col justify-start h-full gap-2 p-5 lowercase transition-all duration-200 ease-in-out border-2 rounded-lg shadow-lg cursor-pointer group hover:pl-8 bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-coolmint-700">
+        <div className="flex items-start justify-between w-full">
+          <p className="text-base font-extrabold text-white sm:text-xl group-hover:underline">
             {title}
           </p>
         </div>
-        <p className="text-sm text-coolmint-500 lowercase">posted on {date}</p>
+        <p className="text-sm lowercase text-coolmint-500">posted on {date}</p>
         <div className="flex gap-2">
           {tags.map((tag) => (
             <p
               key={tag}
-              className="px-2 rounded-md text-xs bg-coolmint-500 w-min"
+              className="px-2 text-xs rounded-md text-coolmint-800 bg-coolmint-500 w-min"
             >
               {tag}
             </p>
@@ -129,16 +131,22 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☘️</text></svg>"
         />
       </Head>
-      <div className={`flex flex-col ${style_defaults.section_gap}`}>
+      <div
+        className={`flex flex-col prose-strong:font-extrabold ${style_defaults.section_gap}`}
+      >
         {/* INTRODUCTION SECTION */}
         <SectionWrapper>
-          <div className="flex gap-4 w-full h-full items-center ">
+          <div className="flex items-center w-full h-full gap-4">
             <ImageWrapper>
               <Image
-                src="/images/ggbridge.jpg"
+                src="/images/ggbridge4.jpg"
                 alt="me"
-                className="rounded-full border-2 border-coolmint-500 object-cover"
+                className="object-cover rounded-full border-coolmint-600"
                 fill={true}
+                sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+                quality={100}
               />
             </ImageWrapper>
             <SectionHeader>
@@ -170,7 +178,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
           gap={style_defaults.section_gap}
         >
           {/* LEFT SIDE */}
-          <div className="flex flex-col w-full lg:w-1/2 gap-4">
+          <div className="flex flex-col w-full gap-4 lg:w-1/2">
             <SectionHeader>
               Tech <span className="font-normal text-white">Interests</span> 👨‍💻
             </SectionHeader>
@@ -178,33 +186,33 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
               always learning things and building stuff
             </SectionParagraph>
             <SectionList>
-              <ul className="list-inside list-disc font-normal">
+              <ul className="font-normal list-disc list-inside">
                 <li>
-                  <span className="text-coolmint-500">client side:</span> react
-                  and typeScript
+                  <span className="text-coolmint-500">client side:</span>{' '}
+                  <strong>react</strong> and typeScript
                 </li>
                 <li>
                   <span className="text-coolmint-500">server side:</span>{' '}
-                  typescript or go
+                  <strong>typescript</strong> or go
                 </li>
                 <li>
-                  <span className="text-coolmint-500">otherwise:</span> probably
-                  python
+                  <span className="text-coolmint-500">otherwise:</span> probably{' '}
+                  <strong>python</strong>
                 </li>
               </ul>
             </SectionList>
-            <div className="text-coolmint-400 text-sm sm:text-base">
+            <div className="text-sm text-coolmint-500/30 sm:text-base">
               <p>*still learning golang*</p>
               <p>*i also think svelte is pretty cool*</p>
             </div>
           </div>
           {/* RIGHT SIDE */}
-          <div className="flex flex-col w-full lg:w-1/2 gap-4">
+          <div className="flex flex-col w-full gap-4 lg:w-1/2">
             <SectionHeader>
               More <span className="font-normal text-white">Stuff</span> 🔗
             </SectionHeader>
             <SectionList>
-              <ul className="grid grid-rows-2  grid-flow-col text-left w-full">
+              <ul className="grid w-full grid-flow-col grid-rows-2 text-left">
                 <SocialLink href="/2022JackBiscegliaResume.pdf">
                   <FileTextIcon />
                   resume
@@ -224,7 +232,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
               </ul>
             </SectionList>
             <SectionList className="flex flex-col gap-2">
-              <p>favorite repos:</p>
+              <strong>favorite repos:</strong>
               <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
                 <Link
                   href="https://github.com/jackbisceglia/apptrack"
@@ -241,9 +249,6 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
                   letsth.ink 💡
                 </Link>
               </div>
-              {/* <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
-                mmapicks 🥊
-              </div> */}
             </SectionList>
           </div>
         </SectionWrapper>
@@ -258,10 +263,11 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
               title={blog.title}
               date={blog.date}
               tags={blog.tags}
+              slug={blog.slug}
             />
           ))}
           <Link
-            className="flex hover:underline flex-start px-2 items-center gap-1 text-neutral-200 hover:text-coolmint-500  py-1 transition-all duration-200 ease-in-out"
+            className="flex items-center gap-1 px-2 py-1 transition-all duration-200 ease-in-out hover:underline flex-start text-neutral-200 hover:text-coolmint-500"
             href="/blog"
           >
             {'read more blogs'}
@@ -285,11 +291,9 @@ export const getServerSideProps = async () => {
       title: 'What I Read in 2022',
       date: 'dec 31, 2022',
       tags: ['reading'],
-      slug: 'whatireadin2022',
+      slug: '2022readinglist',
     },
   ];
-
-  console.log(getBestBlogs());
 
   return {
     props: {

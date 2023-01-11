@@ -1,49 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); */
+/* @import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap'); */
+/* @import url('https://api.fontshare.com/v2/css?f[]=general-sans@200,500,300,600,400,700&display=swap'); */
+/* @import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,100,700,400,300,200,900&display=swap'); */
+@import url('https://api.fontshare.com/v2/css?f[]=epilogue@400,300,800,200,500,600,100,700,900&display=swap');
+/* @import url('https://api.fontshare.com/v2/css?f[]=melodrama@300,400,600,700,500&display=swap'); */
+/* @import url('https://api.fontshare.com/v2/css?f[]=ranade@700,300,100,400,500&display=swap'); */
+/* @import url('https://api.fontshare.com/v2/css?f[]=fira-sans@400,300,600,100,900,200,800,500,700&display=swap'); */
+/* @import url('https://api.fontshare.com/v2/css?f[]=switzer@600,800,900,100,700,400,200,300,500&display=swap'); */
+/* @import url('https://api.fontshare.com/v2/css?f[]=excon@400,900,700,500,300,100&display=swap'); */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html {
+  color-scheme: dark;
+}
+
 body {
+  /* font-family: 'Raleway', sans-serif; */
+  /* font-family: 'Satoshi', sans-serif; */
+  /* font-family: 'General Sans', sans-serif; */
+  /* font-family: 'Cabinet Grotesk', sans-serif; */
+  font-family: 'Epilogue', sans-serif;
+  /* font-family: 'Melodrama', serif; */
+  /* font-family: 'Ranade', sans-serif; */
+  /* font-family: 'Fira Sans', sans-serif; */
+  /* font-family: 'Switzer', sans-serif; */
+  /* font-family: 'Excon', sans-serif; */
   width: 100%;
   min-height: 100vh;
   padding: 0;
   margin: 0;
-  /* background-color: rgb(18, 14, 34); */
-  /* background-color: #150e20;
-  background-image: linear-gradient(
-    50deg,
-    hsl(248deg 57% 3%) 0%,
-    hsl(254deg 81% 5%) 11%,
-    hsl(260deg 92% 6%) 20%,
-    hsl(263deg 100% 5%) 29%,
-    hsl(265deg 99% 5%) 37%,
-    hsl(262deg 94% 4%) 45%,
-    hsl(260deg 60% 1%) 53%,
-    hsl(260deg 93% 3%) 61%,
-    hsl(262deg 98% 5%) 69%,
-    hsl(263deg 100% 6%) 76%,
-    hsl(258deg 91% 5%) 84%,
-    hsl(252deg 79% 4%) 92%,
-    hsl(248deg 57% 2%) 100%
-  ); */
-  /* background-image: linear-gradient(
-    305deg,
-    hsl(270deg 100% 4%) 0%,
-    hsl(270deg 94% 7%) 7%,
-    hsl(271deg 92% 10%) 14%,
-    hsl(270deg 86% 14%) 21%,
-    hsl(267deg 86% 15%) 28%,
-    hsl(262deg 90% 12%) 35%,
-    hsl(256deg 96% 9%) 42%,
-    hsl(251deg 100% 7%) 49%,
-    hsl(256deg 96% 9%) 55%,
-    hsl(262deg 90% 12%) 62%,
-    hsl(268deg 87% 15%) 69%,
-    hsl(268deg 87% 15%) 76%,
-    hsl(262deg 90% 12%) 84%,
-    hsl(256deg 96% 9%) 92%,
-    hsl(251deg 100% 7%) 100%
-  ); */
 }
 
 @layer base {

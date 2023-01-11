@@ -1,12 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { text } from 'stream/consumers';
 
-import ProjectCard from '../components/ProjectCard';
-import SectionTitle from '../components/SectionTitle';
-import TextBlock from '../components/TextBlock';
-import { LeftSection, RightSection } from '../components/layout/ColumnSection';
-import { LeftColumn, RightColumn } from '../components/layout/Columns';
 import {
   ProjectLinkContentType,
   TextSectionType,
@@ -39,21 +33,7 @@ const Projects: NextPage = () => {
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☘️</text></svg>"
         />
       </Head>
-      <div className="here flex flex-col items-center justify-start lg:items-start lg:justify-center lg:flex-row">
-        <LeftColumn>
-          <LeftSection>
-            <SectionTitle white="projects" purple="projects" />
-          </LeftSection>
-          <LeftSection>
-            <SectionTitle purple="Featured" white="Projects" />
-          </LeftSection>
-        </LeftColumn>
-        <RightColumn>
-          <RightSection>
-            <SectionTitle purple="All" white="Projects" />
-          </RightSection>
-        </RightColumn>
-      </div>
+      <div className="here flex flex-col items-center justify-start lg:items-start lg:justify-center lg:flex-row"></div>
     </>
   );
 };

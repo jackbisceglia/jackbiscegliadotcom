@@ -1,4 +1,3 @@
-const { url } = require('inspector');
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
@@ -6,9 +5,32 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      keyframes: {
+        wiggle: {
+          '0%': {
+            transform: 'rotate(-7.5deg)',
+          },
+          '25%': {
+            transform: 'rotate(7.5deg)',
+          },
+          '50%': {
+            transform: 'rotate(-3deg)',
+          },
+          '75%': {
+            transform: 'rotate(3deg)',
+          },
+          '100%': {
+            transform: 'rotate(0deg)',
+          },
+        },
+      },
+      animation: {
+        wiggle: 'wiggle 2s ease-in-out ',
+      },
       backgroundImage: {
         'main-bg': "url('/images/background.png')",
       },
+      // fontSize: {},
       colors: {
         navbar: 'rgba(17, 8, 31, 0.3)',
         purple: {
@@ -24,39 +46,26 @@ module.exports = {
           900: '#0f001e',
         },
         coolmint: {
-          200: "#E5EEEB",
-          300: "#C7CECC",
-          400: "#5F7D76",
-          500: "#88EFE0",
-          600: "#1BA894",
-          700: "#131818",
-          800: "#0B0D0D",
-        }
+          200: '#E5EEEB',
+          300: '#C7CECC',
+          400: '#5F7D76',
+          500: '#88EFE0',
+          // 600: '#1BA894',
+          600: '#1DB39E',
+          // 600: '#1DC6AE',
+          700: '#131818',
+          800: '#0B0D0D',
+        },
       },
       fontFamily: {
         sans: ['Raleway', ...defaultTheme.fontFamily.sans],
         mono: ['Fira Code', ...defaultTheme.fontFamily.mono],
       },
-      animation: {
-        tilt: 'tilt 10s infinite linear',
-      },
-      keyframes: {
-        tilt: {
-          '0%, 50%, 100%': {
-            transform: 'rotate(0deg)',
-          },
-          '25%': {
-            transform: 'rotate(0.5deg)',
-          },
-          '75%': {
-            transform: 'rotate(-0.5deg)',
-          },
-        },
-      },
     },
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require('prettier-plugin-tailwindcss'),
     // ...
   ],
 };
