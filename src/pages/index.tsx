@@ -30,7 +30,7 @@ const SectionWrapper = ({
   return <div className={`flex ${flexDirection} ${gap}`}>{children}</div>;
 };
 
-const SectionHeader = ({ children }: { children: React.ReactNode }) => {
+export const SectionHeader = ({ children }: { children: React.ReactNode }) => {
   return (
     <h1 className="py-1 text-3xl font-extrabold text-coolmint-600 sm:text-4xl">
       {children}

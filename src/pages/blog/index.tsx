@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMemo, useState } from 'react';
 
-import SectionTitle from '../../components/SectionTitle';
+import { SectionHeader } from '..';
 import localAdapter from '../../lib/adapters/local';
 import blogGetter from '../../lib/blogGetter';
 import { BlogPostMeta, Tag } from '../../lib/blogMisc';
@@ -43,15 +43,15 @@ const BlogCard = (meta: BlogPostMeta) => {
   return (
     <Link href={`${router.asPath}/${meta.slug}`}>
       <div className="flex h-full flex-col justify-start gap-2 rounded-xl border-[1px] border-purple-600 bg-purple-700/20 hover:bg-purple-700/50 cursor-pointer p-6 shadow-lg  transition-colors duration-75 ">
-        <div className="flex w-full items-start justify-between">
-          <p className="text-xl text-white font-bold">{meta.title}</p>
+        <div className="flex items-start justify-between w-full">
+          <p className="text-xl font-bold text-white">{meta.title}</p>
         </div>
         <p className="text-base text-purple-400 lowercase1">
           posted on {formatDate(meta.date)}
         </p>
         <div>
           {meta.tags.map((tag, i) => (
-            <p key={i} className="px-3 rounded-md bg-purple-300 w-min">
+            <p key={i} className="px-3 bg-purple-300 rounded-md w-min">
               {tag}
             </p>
           ))}
@@ -63,7 +63,7 @@ const BlogCard = (meta: BlogPostMeta) => {
 
 const NoBlogPosts = () => {
   return (
-    <h1 className="text-purple-400 font-bold text-xl py-4">No Blog Posts</h1>
+    <h1 className="py-4 text-xl font-bold text-purple-400">No Blog Posts</h1>
   );
 };
 
@@ -91,9 +91,11 @@ const Blog: NextPage<
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☘️</text></svg>"
         />
       </Head>
-      <div className="w-full flex flex-col justify-start items-center gap-4">
-        <SectionTitle white="Blog" purple="Jack's" />
-        <div className="flex text-base justify-center items-center gap-3">
+      <div className="flex flex-col items-center justify-start w-full gap-4">
+        <SectionHeader>
+          Jack&#39;s, <span className="font-normal text-white">Blog</span>
+        </SectionHeader>
+        <div className="flex items-center justify-center gap-3 text-base">
           <h3 className="text-purple-400">filter:</h3>
           <select
             onChange={(e) => setFilter(e.target.value as Tag)}
@@ -114,7 +116,7 @@ const Blog: NextPage<
           </select>
         </div>
         {filteredPosts.length ? (
-          <div className="grid w-full max-w-screen-xl grid-cols-1 gap-6 sm:grid-cols-2 py-8">
+          <div className="grid w-full max-w-screen-xl grid-cols-1 gap-6 py-8 sm:grid-cols-2">
             {filteredPosts.map((post) => (
               <BlogCard key={post.date} {...post} />
             ))}
