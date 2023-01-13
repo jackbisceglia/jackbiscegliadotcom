@@ -7,8 +7,6 @@ import matter from 'gray-matter';
 
 const contentDir = join(process.cwd(), 'src/data/posts');
 
-const blogMetaFields = ['title', 'genre', 'slug', 'date'];
-
 const localAdapter = function (): Adapter {
   const getAll = function () {
     return fs.readdirSync(contentDir);

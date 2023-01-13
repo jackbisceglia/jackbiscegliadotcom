@@ -1,22 +1,145 @@
 import {
-  GetServerSideProps,
   InferGetServerSidePropsType,
+  InferGetStaticPropsType,
   NextPage,
 } from 'next';
-
-import { BlogPostMeta, Tag } from '../../lib/blogMisc';
 import Head from 'next/head';
 import Link from 'next/link';
-import SectionTitle from '../../components/SectionTitle';
-import blogGetter from '../../lib/blogGetter';
-import { formatDate } from './[slug]';
-import localAdapter from '../../lib/adapters/local';
-import { useRouter } from 'next/router';
 import { useMemo, useState } from 'react';
+
+import { SectionWrapper } from '../../components/layout/SectionUtils';
+import localAdapter from '../../lib/adapters/local';
+import blogGetter from '../../lib/blogGetter';
+import { BlogPostMeta, Tag } from '../../lib/blogMisc';
+
+const BlogCard = ({
+  title,
+  date,
+  summary,
+  tags,
+  slug,
+}: {
+  title: string;
+  date: string;
+  summary: string;
+  tags: string[];
+  slug: string;
+}) => {
+  return (
+    <Link className="w-full" href={`/blog/${slug}`}>
+      <div className="flex flex-col justify-start h-full gap-2 p-5 transition-all duration-200 ease-in-out border-2 rounded-lg shadow-lg cursor-pointer group hover:pl-8 bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-coolmint-700">
+        <h3 className="mb-1 text-lg font-extrabold text-white sm:text-xl group-hover:underline">
+          {title}
+        </h3>
+        <p className="text-sm lowercase text-neutral-400 sm:text-base">
+          {summary}
+        </p>
+        <div className="flex items-center gap-1">
+          <p className="text-xs lowercase sm:text-sm text-coolmint-500">
+            {'🌱 ' + date}
+          </p>
+          <p>{'🏷️ '}</p>
+          {tags.map((tag) => (
+            <div
+              key={tag}
+              className="px-2 text-xs sm:text-sm rounded-[0.25rem] text-coolmint-800 bg-coolmint-500 w-min"
+            >
+              {tag}
+            </div>
+          ))}
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+const NoBlogPosts = () => {
+  return (
+    <h1 className="py-4 text-xl font-bold text-coolmint-600">
+      No Blog Posts 🗑️
+    </h1>
+  );
+};
+
+const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  posts,
+}) => {
+  const selectStyles = 'bg-coolmint-700 text-left';
+  const [filter, setFilter] = useState<Tag>('');
+
+  const filteredPosts = useMemo(
+    () =>
+      posts.filter(
+        (post: BlogPostMeta) => filter === '' || post.tags.includes(filter),
+      ),
+    [posts, filter],
+  );
+
+  return (
+    <>
+      <Head>
+        <title>Blog - Jack B</title>
+        <meta name="description" content="Check out the blog!" />
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☘️</text></svg>"
+        />
+      </Head>
+      <div
+        className={`flex flex-col justify-start items-center prose-strong:font-extrabold gap-10`}
+      >
+        <SectionWrapper flexOptions="items-center" gap="gap-4">
+          <h1 className="text-3xl font-extrabold text-coolmint-600 sm:text-4xl">
+            {' '}
+            Jack&#39;s <span className="font-normal text-white">Blog</span>
+          </h1>
+          <p className="px-3 font-normal text-center text-neutral-200 sm:text-lg">
+            i write about anything and everything, from my thoughts on
+            programming to my interests in sports and reading!
+          </p>
+          <div className="flex items-center justify-center gap-3 text-base">
+            <h3 className="text-coolmint-600">filter:</h3>
+            <select
+              onChange={(e) => setFilter(e.target.value as Tag)}
+              className="rounded-md bg-transparent text-white px-3 border-[1px] border-coolmint-600 outline-1 outline-coolmint-400 decoration-coolmint-400 p-1 text-left"
+            >
+              <option value="" className={selectStyles}>
+                none
+              </option>
+              <option value="cs" className={selectStyles}>
+                cs
+              </option>
+              <option className={selectStyles} value="reading">
+                reading
+              </option>
+              <option className={selectStyles} value="sports">
+                sports
+              </option>
+            </select>
+          </div>
+          <input
+            className="w-full px-4 py-2 mt-2 border-2 rounded-md text-neutral-200 bg-coolmint-700/20 border-coolmint-700"
+            type="text"
+            name=""
+            id=""
+            placeholder="search..."
+          />
+        </SectionWrapper>
+        <div className="flex flex-col justify-start w-full gap-4">
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map((blog) => <BlogCard key={blog.slug} {...blog} />)
+          ) : (
+            <NoBlogPosts />
+          )}
+        </div>
+      </div>
+    </>
+  );
+};
 
 const fetchBlog = blogGetter(localAdapter());
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const postPaths = fetchBlog.getAll();
 
   const postsMeta = postPaths
@@ -30,82 +153,6 @@ export const getServerSideProps = async () => {
       posts: postsMeta,
     },
   };
-};
-
-type Post = {
-  title: string;
-  date: string;
-  slug: string;
-};
-
-const BlogCard = (meta: BlogPostMeta) => {
-  const router = useRouter();
-  return (
-    <Link href={`${router.asPath}/${meta.slug}`}>
-      <div className="flex h-full flex-col justify-start gap-2 rounded-xl border-[1px] border-purple-600 bg-purple-700/20 hover:bg-purple-700/50 cursor-pointer p-6 shadow-lg  transition-colors duration-75 ">
-        <div className="flex w-full items-start justify-between">
-          <p className="text-xl text-white font-bold">{meta.title}</p>
-        </div>
-        <p className="text-base text-purple-400 lowercase1">
-          posted on {formatDate(meta.date)}
-        </p>
-        <div>
-
-            {meta.tags.map((tag, i) => (<p key={i} className="px-3 rounded-md bg-purple-300 w-min" >{tag}</p>))}
-        </div>
-      </div>
-    </Link>
-  );
-};
-
-const NoBlogPosts = () => {
-  return <h1 className="text-purple-400 font-bold text-xl py-4">No Blog Posts</h1>
-}
-
-
-const Blog: NextPage<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> = ({ posts }) => {
-  const selectStyles = "bg-purple-700 text-left"
-  const [filter, setFilter] = useState<Tag>("")
-  
-  const filteredPosts = useMemo(() => posts.filter((post: BlogPostMeta) => filter === "" || post.tags.includes(filter)), [posts, filter])
-
-  return (
-    <>
-      <Head>
-        <title>Blog - Jack B</title>
-        <meta name="description" content="Check out the blog!" />
-        <link
-          rel="icon"
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☘️</text></svg>"
-        />
-      </Head>
-      <div className="w-full flex flex-col justify-start items-center gap-4">
-        <SectionTitle white="Blog" purple="Jack's" />
-        <div className='flex text-base justify-center items-center gap-3'>
-          <h3 className="text-purple-400">filter:</h3>
-          <select onChange={(e) => setFilter(e.target.value as Tag)} className="rounded-md bg-transparent text-white  px-3 border-[1px] border-purple-400 outline-1 outline-purple-400 decoration-purple-400 p-1 text-left">
-            <option value="" className={selectStyles}>none</option>
-            <option value="cs" className={selectStyles}>cs</option>
-            <option className={selectStyles} value="reading">reading</option>
-            <option className={selectStyles} value="sports">sports</option>
-          </select>
-        </div>
-        {
-          filteredPosts.length ? 
-
-        <div className="grid w-full max-w-screen-xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 py-8">
-          {filteredPosts.map((post) => (
-            <BlogCard key={post.date} {...post} />
-          ))}
-        </div>
-        :
-        <NoBlogPosts/>
-        }
-      </div>
-    </>
-  );
 };
 
 export default Blog;

@@ -1,32 +1,138 @@
-import * as Content from '../data/content/home';
-
-import { HelperInfo, HelperSection } from '../components/HelperText';
-import { LeftColumn, RightColumn } from '../components/layout/Columns';
-import { LeftSection, RightSection } from '../components/layout/ColumnSection';
-import React, { useState } from 'react';
-
+import {
+  ArrowRightIcon,
+  BookmarkFilledIcon,
+  FileTextIcon,
+  GitHubLogoIcon,
+  LinkedInLogoIcon,
+} from '@radix-ui/react-icons';
+import type { InferGetServerSidePropsType, NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import LinkGrid from '../components/LinkGrid';
-import type { NextPage } from 'next';
-import SectionTitle from '../components/SectionTitle';
-import TextBlock from '../components/TextBlock';
+import Link from 'next/link';
+import React from 'react';
 
-export const pTypography =
-  'text-white text-base leading-5 sm:leading-snug sm:text-lg font-light';
-export const pTypography_purple = 'text-purple-400 font-semibold';
+import {
+  GenericParagraph,
+  GenericSection,
+  SectionWrapper,
+  style_defaults,
+} from '../components/layout/SectionUtils';
+import localAdapter from '../lib/adapters/local';
+import blogGetter from '../lib/blogGetter';
 
-export type BulletType = {
-  color: 'white' | 'purple';
-  text: string;
+export const Divider = () => <hr className="border-coolmint-700" />;
+
+export const SectionHeader = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <h1 className="py-1 text-3xl font-extrabold text-coolmint-600 sm:text-4xl">
+      {children}
+    </h1>
+  );
 };
 
-export type ProfilePictureType = {
-  src: string;
-  caption: string;
+const ImageWrapper = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="relative z-0 sm:h-[4.5rem] sm:w-[4.5rem] w-14 h-14">
+      {children}
+    </div>
+  );
 };
 
-const Home: NextPage = () => {
+export const SocialLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => {
+  const LinkStyle =
+    'flex justify-center items-center gap-2  hover:text-coolmint-500 hover:underline py-1 transition-all duration-200 ease-in-out ';
+  return (
+    <li className="mr-auto">
+      <Link target="_blank" className={LinkStyle} href={href}>
+        {children}
+      </Link>
+    </li>
+  );
+};
+
+// const BlogCard = ({
+//   title,
+//   date,
+//   tags,
+//   slug,
+// }: {
+//   title: string;
+//   date: string;
+//   tags: string[];
+//   slug: string;
+// }) => {
+//   return (
+//     <Link href={`/blog/${slug}`}>
+//       <div className="flex flex-col justify-start h-full gap-2 p-5 transition-all duration-200 ease-in-out border-2 rounded-lg shadow-lg cursor-pointer group hover:pl-8 bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-coolmint-700">
+//         <div className="flex items-start justify-between w-full">
+//           <p className="text-base font-extrabold text-white sm:text-xl group-hover:underline">
+//             {title}
+//           </p>
+//         </div>
+//         <p className="text-sm lowercase text-coolmint-500">posted on {date}</p>
+//         <div className="flex gap-2">
+//           {tags.map((tag) => (
+//             <p
+//               key={tag}
+//               className="px-2 text-xs rounded-md text-coolmint-800 bg-coolmint-500 w-min"
+//             >
+//               {tag}
+//             </p>
+//           ))}
+//         </div>
+//       </div>
+//     </Link>
+//   );
+// };
+
+const BlogCard = ({
+  title,
+  date,
+  summary,
+  tags,
+  slug,
+}: {
+  title: string;
+  date: string;
+  summary: string;
+  tags: string[];
+  slug: string;
+}) => {
+  return (
+    <Link className="w-full" href={`/blog/${slug}`}>
+      <div className="flex flex-col justify-start h-full gap-2 p-5 transition-all duration-200 ease-in-out border-2 rounded-lg shadow-lg cursor-pointer group hover:pl-8 bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-coolmint-700">
+        <h3 className="mb-1 text-lg font-extrabold text-white sm:text-xl group-hover:underline">
+          {title}
+        </h3>
+
+        <p className="text-xs lowercase sm:text-sm text-coolmint-500">
+          {'🌱 ' + date}
+        </p>
+        <div className="flex items-center gap-1">
+          <p>{'🏷️ '}</p>
+          {tags.map((tag) => (
+            <div
+              key={tag}
+              className="px-2 text-xs sm:text-sm rounded-[0.25rem] text-coolmint-800 bg-coolmint-500 w-min"
+            >
+              {tag}
+            </div>
+          ))}
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+const Home: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = (
+  props,
+) => {
   return (
     <>
       <Head>
@@ -40,96 +146,160 @@ const Home: NextPage = () => {
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☘️</text></svg>"
         />
       </Head>
-      <div className="flex flex-col items-center justify-start lg:items-start lg:justify-center lg:flex-row">
-        <LeftColumn>
-          <LeftSection>
-            <SectionTitle
-              white={Content.IntroGreeting.title!.white}
-              purple={Content.IntroGreeting.title!.purple}
-            />
-            <TextBlock textSections={Content.IntroGreeting.body} />
-          </LeftSection>
-          <LeftSection>
-            <SectionTitle
-              white={Content.TechInterests.title!.white}
-              purple={Content.TechInterests.title!.purple}
-            />
-            <TextBlock textSections={Content.TechInterests.body} />
-            <HelperSection helpers={Content.Helpers} />
-          </LeftSection>
-        </LeftColumn>
-        <RightColumn>
-          <RightSection>
-            <SectionTitle purple="More" white="Stuff" />
-            <LinkGrid links={Content.Links} />
-            <BulletList bullets={Content.Education} />
-            <BulletList bullets={Content.Experience} />
-            <Picture
-              src={Content.Picture.src}
-              caption={Content.Picture.caption}
-            />
-          </RightSection>
-        </RightColumn>
+      <div
+        className={`flex flex-col prose-strong:font-extrabold ${style_defaults.section_gap}`}
+      >
+        {/* INTRODUCTION SECTION */}
+        <SectionWrapper>
+          <div className="flex items-center w-full h-full gap-4">
+            <ImageWrapper>
+              <Image
+                src="/images/ggbridge4.jpg"
+                alt="me"
+                className="object-cover rounded-full border-coolmint-600"
+                fill={true}
+                sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+                quality={100}
+              />
+            </ImageWrapper>
+            <SectionHeader>
+              Hi, <span className="font-normal text-white">I&#39;m Jack</span>
+            </SectionHeader>
+          </div>
+          <GenericParagraph>
+            hi, im a senior at <strong>umass amherst</strong> majoring in
+            computer science, and im passionate about software engineering and
+            building web systems. recently, i&#39;ve interned at{' '}
+            <strong>salesforce</strong> and <strong>hubspot</strong> working as
+            a software engineer! currently working on{' '}
+            <Link
+              className="underline hover:text-coolmint-500"
+              href="https://apptrack.tech"
+            >
+              apptrack
+            </Link>
+            🙂.
+          </GenericParagraph>
+          <GenericParagraph>
+            in my free time, i love watching basketball (go celtics), making hip
+            hop beats, and reading books (see my blog)!
+          </GenericParagraph>
+        </SectionWrapper>
+        {/* MIDDLE SECTION */}
+        <SectionWrapper
+          flexDirection="flex-col lg:flex-row"
+          gap={style_defaults.section_gap}
+        >
+          {/* LEFT SIDE */}
+          <div className="flex flex-col w-full gap-4 lg:w-1/2">
+            <SectionHeader>
+              Tech <span className="font-normal text-white">Interests</span> 👨‍💻
+            </SectionHeader>
+            <GenericParagraph>
+              always learning things and building stuff
+            </GenericParagraph>
+            <GenericSection>
+              <ul className="font-normal list-disc list-inside">
+                <li>
+                  <span className="text-coolmint-500">client side:</span>{' '}
+                  <strong>react</strong> and typeScript
+                </li>
+                <li>
+                  <span className="text-coolmint-500">server side:</span>{' '}
+                  <strong>typescript</strong> or go
+                </li>
+                <li>
+                  <span className="text-coolmint-500">otherwise:</span> probably{' '}
+                  <strong>python</strong>
+                </li>
+              </ul>
+            </GenericSection>
+            <div className="text-sm text-coolmint-500/30 sm:text-base">
+              <p>*still learning golang*</p>
+              <p>*i also think svelte is pretty cool*</p>
+            </div>
+          </div>
+          {/* RIGHT SIDE */}
+          <div className="flex flex-col w-full gap-4 lg:w-1/2">
+            <SectionHeader>
+              More <span className="font-normal text-white">Stuff</span> 🔗
+            </SectionHeader>
+            <GenericSection>
+              <ul className="grid w-full grid-flow-col grid-rows-2 text-left">
+                <SocialLink href="/2022JackBiscegliaResume.pdf">
+                  <FileTextIcon />
+                  resume
+                </SocialLink>
+                <SocialLink href="https://github.com/jackbisceglia/">
+                  <GitHubLogoIcon />
+                  github
+                </SocialLink>
+                <SocialLink href="https://www.linkedin.com/in/jackbisceglia/">
+                  <LinkedInLogoIcon />
+                  linkedin
+                </SocialLink>
+                <SocialLink href="https://www.goodreads.com/user/show/133940656-jack-bisceglia">
+                  <BookmarkFilledIcon />
+                  goodreads
+                </SocialLink>
+              </ul>
+            </GenericSection>
+            <GenericSection className="flex flex-col gap-2">
+              <strong>favorite repos:</strong>
+              <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
+                <Link
+                  href="https://github.com/jackbisceglia/apptrack"
+                  target="_blank"
+                >
+                  apptrack.tech 🚀{' '}
+                </Link>
+              </div>
+              <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
+                <Link
+                  href="https://github.com/LinkFrost/letsthink"
+                  target="_blank"
+                >
+                  letsth.ink 💡
+                </Link>
+              </div>
+            </GenericSection>
+          </div>
+        </SectionWrapper>
+        <Divider />
+        <SectionWrapper>
+          <SectionHeader>
+            Best <span className="font-normal text-white">Blogs</span> ✍️
+          </SectionHeader>
+          {props.bestBlogs.map((blog) => (
+            <BlogCard key={blog.slug} {...blog} />
+          ))}
+          <Link
+            className="flex items-center gap-1 px-2 py-1 transition-all duration-200 ease-in-out hover:underline flex-start text-neutral-200 hover:text-coolmint-500"
+            href="/blog"
+          >
+            {'read more blogs'}
+            <ArrowRightIcon />
+          </Link>
+        </SectionWrapper>
       </div>
     </>
   );
 };
 
-const Bullet: React.FC<{ bullet: BulletType[] }> = ({ bullet }) => {
-  return (
-    <p className={`${pTypography} py-0.5`}>
-      {bullet.map(({ color, text }, idx) => {
-        return color === 'purple' ? (
-          <span className={pTypography_purple} key={idx}>
-            {text}
-          </span>
-        ) : (
-          text
-        );
-      })}
-    </p>
-  );
-};
+const fetchBlog = blogGetter(localAdapter());
 
-const BulletList: React.FC<{ bullets: BulletType[][] }> = ({ bullets }) => {
-  return (
-    <div className="py-4">
-      {bullets.map((bullet, idx) => (
-        <Bullet key={idx} bullet={bullet} />
-      ))}
-    </div>
-  );
-};
+export const getStaticProps = async () => {
+  const favoriteBlogs = ['2022readinglist', '2023technologies'];
+  const getBestBlogs = () =>
+    favoriteBlogs.map(fetchBlog.getBlogBySlug).map((blog) => blog.data);
 
-const Picture: React.FC<ProfilePictureType> = ({ src, caption }) => {
-  const [showCaption, setShowCaption] = useState(false);
-  const reverseShowState = () => setShowCaption(!showCaption);
-  return (
-    <div
-      // className="w-5/6 my-2 mr-auto"
-      className="w-8/12 my-3 mr-auto sm:w-5/12 lg:w-9/12 "
-      onMouseEnter={reverseShowState}
-      onMouseLeave={reverseShowState}
-    >
-      <div className="relative group">
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-90 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
-        <div className="w-auto h-auto border-4 border-purple-400 rounded-md">
-          <Image
-            src={src}
-            alt={caption}
-            layout="responsive"
-            width={1200}
-            height={1200}
-            objectFit="cover"
-            className="scale-100 border-purple-400 rounded-sm"
-          />
-        </div>
-      </div>
-      <HelperInfo paddingOptions="py-3" show={showCaption}>
-        {caption}
-      </HelperInfo>
-    </div>
-  );
+  return {
+    props: {
+      bestBlogs: getBestBlogs(),
+    },
+  };
 };
 
 export default Home;

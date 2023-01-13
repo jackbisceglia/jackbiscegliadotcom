@@ -1,25 +1,16 @@
-import Footer from './Footer';
 import Image from 'next/image';
+
+import Footer from './Footer';
 import Navbar from './Navbar';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <div className="flex flex-col justify-between w-full min-h-screen">
-        <Navbar />
-        <main className="flex w-full h-full px-3 py-6 grow sm:py-8 sm:px-16 md:px-18 lg:pt-10 lg:pb-8 lg:px-32">
-          {children}
-        </main>
-        <Footer />
-      </div>
-    </>
+    <div className="flex flex-col justify-start min-h-screen">
+      <Navbar />
+      <main className="text-left px-8 py-8 sm:pt-16 sm:pb-20 sm:px-12 sm:max-w-[900px] mx-auto">
+        {children}
+      </main>
+      <Footer />
+    </div>
   );
-}
-
-{
-  /* <div class="flex flex-col h-screen justify-between">
-  <header class="h-10 bg-red-500">Header</header>
-  <main class="mb-auto h-10 bg-green-500">Content</main>
-  <footer class="h-10 bg-blue-500">Footer</footer>
-</div> */
 }

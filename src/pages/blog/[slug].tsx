@@ -1,3 +1,4 @@
+import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import {
   GetStaticProps,
   GetStaticPropsContext,
@@ -5,11 +6,11 @@ import {
   InferGetStaticPropsType,
   NextPage,
 } from 'next';
-
 import Head from 'next/head';
 import Link from 'next/link';
-import blogGetter from '../../lib/blogGetter';
+
 import localAdapter from '../../lib/adapters/local';
+import blogGetter from '../../lib/blogGetter';
 import markdownToHtml from '../../lib/markdownToHtml';
 
 const fetchBlog = blogGetter(localAdapter());
@@ -57,11 +58,13 @@ export const formatDate = (date: string) => {
   return dateObj.toDateString();
 };
 
-const BackToBlogsButton = () => (
-  <Link href="/blog">
-    <a className="text-sm text-purple-400 px-4 py-2 hover:bg-purple-900 rounded-md duration-100 transition-all">
-      {'< back to blogs'}
-    </a>
+export const BackToBlogsButton = () => (
+  <Link
+    className="flex items-center gap-1 px-2 py-1 transition-all duration-200 ease-in-out hover:underline flex-start text-neutral-200 hover:text-coolmint-500"
+    href="/blog"
+  >
+    <ArrowLeftIcon />
+    {'back to blogs'}
   </Link>
 );
 
@@ -78,21 +81,28 @@ const BlogPost: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☘️</text></svg>"
         />
       </Head>
-      <div className="flex flex-col items-center justify-start w-full gap-2 px-4 max-w-full">
+      <div className="flex flex-col items-center justify-start w-full max-w-full gap-2 px-4">
         <BackToBlogsButton />
-        <h1 className="text-white text-5xl sm:text-6xl font-bold py-3 text-center">
+        <h1 className="py-3 text-2xl font-bold text-center text-white sm:text-4xl">
           {props.data.title}
         </h1>
-        <p className="text-purple-400 font-bold lowercase">
-          posted on {formatDate(props.data.date)}
+        <p className="text-sm lowercase text-coolmint-500 sm:text-base">
+          {'🌱 ' + props.data.date}
         </p>
-        <div className="flex gap-2">
-          <p className="text-purple-400 lowercase">tags: </p>
-            {props.data.tags.map((tag, i) => (<p key={i} className="px-3 rounded-md bg-purple-300" >{tag}</p>))}
+        <div className="flex gap-2 text-sm sm:text-base">
+          <p className="lowercase text-coolmint-500">🏷️</p>
+          {props.data.tags.map((tag, i) => (
+            <p
+              key={i}
+              className="px-3 rounded-md bg-coolmint-500 text-coolmint-800 "
+            >
+              {tag}
+            </p>
+          ))}
         </div>
         <article
           // className={mdStyles['markdown']}
-          className="prose prose-base sm:prose-lg prose-invert py-8 max-w-screen-md w-full prose-code:rounded-xl prose-pre:border-[1px] prose-pre:border-purple-600 prose-pre:bg-purple-900/40 prose-code:leading-[0.5rem] sm:prose-p:my-2 sm:prose-headings:my-4 sm:prose-hr:my-8 sm:prose-hr:border-purple-600"
+          className="prose prose-base sm:prose-lg prose-invert py-8 max-w-screen-md w-full prose-code:rounded-xl prose-pre:border-[1px] prose-pre:border-coolmint-700 prose-pre:bg-purple-700/20 prose-code:leading-[0.5rem] sm:prose-p:my-2 sm:prose-headings:my-4 sm:prose-hr:my-8 sm:prose-hr:border-coolmint-700"
           dangerouslySetInnerHTML={{ __html: props.postContentAsHtml }}
         />
         <BackToBlogsButton />
