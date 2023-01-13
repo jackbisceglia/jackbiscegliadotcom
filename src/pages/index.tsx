@@ -150,13 +150,13 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
               />
             </ImageWrapper>
             <SectionHeader>
-              Hi, <span className="font-normal text-white">I'm Jack</span>
+              Hi, <span className="font-normal text-white">I&#39;m Jack</span>
             </SectionHeader>
           </div>
           <SectionParagraph>
             hi, im a senior at <strong>umass amherst</strong> majoring in
             computer science, and im passionate about software engineering and
-            building web systems. recently, i've interned at{' '}
+            building web systems. recently, i&#39;ve interned at{' '}
             <strong>salesforce</strong> and <strong>hubspot</strong> working as
             a software engineer! currently working on{' '}
             <Link
