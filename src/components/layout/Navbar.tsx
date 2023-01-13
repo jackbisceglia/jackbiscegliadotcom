@@ -50,38 +50,36 @@ function Navbar() {
 
   return (
     <nav className="sticky top-0 z-10 w-full py-4 text-lg border-b sm:text-base bg-coolmint-800/40 border-coolmint-300/20 backdrop-blur-sm">
-      {!showPopOut ? (
-        <div className="flex items-center justify-between text-left px-8  sm:px-12 sm:max-w-[900px] mx-auto">
-          <div className="text-base font-semibold text-coolmint-500 sm:py-0">
-            <h1 className="animate-wiggle hover:rotate-[4.5deg] duration-200  ">
-              <Link
-                href="/"
-                className="transition-all duration-75 ease-in-out "
-              >
-                jack b. 🍀
-              </Link>
-            </h1>
-          </div>
-          <ul className="justify-between hidden gap-5 text-base font-normal text-white md:flex">
-            {NavLinks.map(({ title, href }, idx) => (
-              <li
-                key={idx}
-                className={`${liStyle} ${
-                  router.asPath === href ? liStyleActive : ''
-                }`}
-              >
-                <Link href={href}>{title}</Link>
-              </li>
-            ))}
-          </ul>
-          <button
-            className="flex h-full text-neutral-200 md:hidden hover:text-coolmint-500"
-            onClick={toggleMenu}
-          >
-            <HamburgerMenuIcon className="w-5 h-full" />
-          </button>
+      {/* {!showPopOut ? ( */}
+      <div className="flex items-center justify-between text-left px-8  sm:px-12 sm:max-w-[900px] mx-auto">
+        <div className="text-base font-semibold text-coolmint-500 sm:py-0">
+          <h1 className="animate-wiggle hover:rotate-[4.5deg] duration-200  ">
+            <Link href="/" className="transition-all duration-75 ease-in-out ">
+              jack b. 🍀
+            </Link>
+          </h1>
         </div>
-      ) : (
+        <ul className="justify-between hidden gap-5 text-base font-normal text-white md:flex">
+          {NavLinks.map(({ title, href }, idx) => (
+            <li
+              key={idx}
+              className={`${liStyle} ${
+                router.asPath === href ? liStyleActive : ''
+              }`}
+            >
+              <Link href={href}>{title}</Link>
+            </li>
+          ))}
+        </ul>
+        <button
+          className="flex h-full text-neutral-200 md:hidden hover:text-coolmint-500"
+          onClick={toggleMenu}
+        >
+          <HamburgerMenuIcon className="w-5 h-full" />
+        </button>
+      </div>
+      {/* ) : ( */}
+      {showPopOut && (
         <div
           className={`absolute top-0 z-10 flex flex-col items-start justify-center h-screen w-full p-8 bg-coolmint-800  duration-50 transition-all ease-in-out`}
         >
