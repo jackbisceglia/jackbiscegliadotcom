@@ -37,7 +37,7 @@ function Navbar() {
 
   const router = useRouter();
 
-  const liStyle = `flex items-center transition-all duration-500 ease-in-out hover:text-coolmint-500 hover:pl-4 group`;
+  const liStyle = `flex items-center transition-all duration-500 ease-in-out hover:text-coolmint-500 group`;
   const liStyleActive = ' text-coolmint-500 font-bold';
 
   const NavLinks = [
