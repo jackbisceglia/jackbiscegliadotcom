@@ -5,6 +5,7 @@ export type BlogPostMeta = {
   tags: Tag[];
   slug: string;
   date: string;
+  summary:  string;
 };
 
 export type BlogPost = {

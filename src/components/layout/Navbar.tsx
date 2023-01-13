@@ -67,7 +67,9 @@ function Navbar() {
                 router.asPath === href ? liStyleActive : ''
               }`}
             >
-              <Link href={href}>{title}</Link>
+              <Link className="text-center" href={href}>
+                {title}
+              </Link>
             </li>
           ))}
         </ul>
