@@ -102,7 +102,7 @@ const BlogPost: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
         </div>
         <article
           // className={mdStyles['markdown']}
-          className="prose prose-base sm:prose-lg prose-invert py-8 max-w-screen-md w-full prose-code:rounded-xl prose-pre:border-[1px] prose-pre:border-coolmint-700 prose-pre:bg-purple-700/20 prose-code:leading-[0.5rem] sm:prose-p:my-2 sm:prose-headings:my-4 sm:prose-hr:my-8 sm:prose-hr:border-coolmint-700"
+          className="prose prose-base sm:prose-lg prose-invert py-8 max-w-screen-md w-full prose-code:rounded-xl prose-p:py-1 prose-pre:border-[1px] prose-pre:border-coolmint-700 prose-pre:bg-purple-700/20 prose-code:leading-[0.5rem] sm:prose-p:my-2 sm:prose-headings:my-4 sm:prose-hr:my-8 sm:prose-hr:border-coolmint-700"
           dangerouslySetInnerHTML={{ __html: props.postContentAsHtml }}
         />
         <BackToBlogsButton />
