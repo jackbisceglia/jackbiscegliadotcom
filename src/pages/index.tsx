@@ -183,8 +183,15 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = (
             🙂.
           </GenericParagraph>
           <GenericParagraph>
-            in my free time, i love watching basketball (go celtics), making hip
-            hop beats, and reading books (see my blog)!
+            in my free time, i love watching basketball (go{' '}
+            <Link
+              target={'_blank'}
+              href="/the-energy-is-about-to-shift"
+              className="py-1 transition-all duration-200 ease-in-out hover:text-green-400 hover:underline"
+            >
+              celtics
+            </Link>
+            ), making hip hop beats, and reading books (see my blog)!
           </GenericParagraph>
         </SectionWrapper>
         {/* MIDDLE SECTION */}
