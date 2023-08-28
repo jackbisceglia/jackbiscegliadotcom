@@ -5,20 +5,20 @@ import {
   GitHubLogoIcon,
   LinkedInLogoIcon,
 } from '@radix-ui/react-icons';
-import type { InferGetServerSidePropsType, NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-
 import {
   GenericParagraph,
   GenericSection,
   SectionWrapper,
   style_defaults,
 } from '../components/layout/SectionUtils';
-import localAdapter from '../lib/adapters/local';
+import type { InferGetServerSidePropsType, NextPage } from 'next';
+
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 import blogGetter from '../lib/blogGetter';
+import localAdapter from '../lib/adapters/local';
 
 export const Divider = () => <hr className="border-coolmint-700" />;
 
@@ -235,7 +235,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = (
             </SectionHeader>
             <GenericSection>
               <ul className="grid w-full grid-flow-col grid-rows-2 text-left">
-                <SocialLink href="/2022JackBiscegliaResume.pdf">
+                <SocialLink href="/JackBiscegliaResumeWebsite.pdf">
                   <FileTextIcon />
                   resume
                 </SocialLink>

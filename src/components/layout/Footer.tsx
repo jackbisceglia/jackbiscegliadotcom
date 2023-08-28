@@ -64,7 +64,10 @@ function Footer() {
         <div className="flex flex-col">
           <p className="py-1 font-extrabold">connect 📍</p>
           <ul className="grid grid-cols-2 gap-x-[4vw] lg:flex lg:justify-start lg:gap-[2.5vw]">
-            <SocialLink goToNewPage={true} href="/2022JackBiscegliaResume.pdf">
+            <SocialLink
+              goToNewPage={true}
+              href="/JackBiscegliaResumeWebsite.pdf"
+            >
               <FileTextIcon />
               resume
             </SocialLink>
