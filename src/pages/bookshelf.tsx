@@ -1,12 +1,12 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 
-const Projects: NextPage = () => {
+const Bookshelf: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Projects - Jack B</title>
-        <meta name="description" content="What I'm making" />
+        <title>Bookshelf - Jack B</title>
+        <meta name="description" content="What I'm reading" />
         <link
           rel="icon"
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☘️</text></svg>"
@@ -17,4 +17,4 @@ const Projects: NextPage = () => {
   );
 };
 
-export default Projects;
+export default Bookshelf;

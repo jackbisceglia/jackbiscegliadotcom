@@ -5,20 +5,20 @@ import {
   GitHubLogoIcon,
   LinkedInLogoIcon,
 } from '@radix-ui/react-icons';
+import type { InferGetServerSidePropsType, NextPage } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+
 import {
   GenericParagraph,
   GenericSection,
   SectionWrapper,
   style_defaults,
 } from '../components/layout/SectionUtils';
-import type { InferGetServerSidePropsType, NextPage } from 'next';
-
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import blogGetter from '../lib/blogGetter';
 import localAdapter from '../lib/adapters/local';
+import blogGetter from '../lib/blogGetter';
 
 export const Divider = () => <hr className="border-coolmint-700" />;
 
@@ -169,18 +169,9 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = (
             </SectionHeader>
           </div>
           <GenericParagraph>
-            hi, im a senior at <strong>umass amherst</strong> majoring in
-            computer science, and im passionate about software engineering and
-            building web systems. recently, i&#39;ve interned at{' '}
-            <strong>salesforce</strong> and <strong>hubspot</strong> working as
-            a software engineer! currently working on{' '}
-            <Link
-              className="underline hover:text-coolmint-500"
-              href="https://apptrack.tech"
-            >
-              apptrack
-            </Link>
-            🙂.
+            hi! i&#39;m a software engineer (amts) at salesforce working on
+            accessibility. i&#39;m passionate about software engineering and
+            building cool apps 🙂.
           </GenericParagraph>
           <GenericParagraph>
             in my free time, i love watching basketball (go{' '}
@@ -191,7 +182,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = (
             >
               celtics
             </Link>
-            ), making hip hop beats, and reading books (see my blog)!
+            ) and mma, making hip hop beats, and reading books (see my blog)!
           </GenericParagraph>
         </SectionWrapper>
         {/* MIDDLE SECTION */}
@@ -204,28 +195,29 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = (
             <SectionHeader>
               Tech <span className="font-normal text-white">Interests</span> 👨‍💻
             </SectionHeader>
-            <GenericParagraph>
-              always learning things and building stuff
-            </GenericParagraph>
             <GenericSection>
               <ul className="font-normal list-disc list-inside">
                 <li>
-                  <span className="text-coolmint-500">client side:</span>{' '}
-                  <strong>react</strong> and typeScript
+                  <span className="text-coolmint-500">frontend:</span>{' '}
+                  <strong>react</strong> and typescript
                 </li>
                 <li>
-                  <span className="text-coolmint-500">server side:</span>{' '}
-                  <strong>typescript</strong> or go
+                  <span className="text-coolmint-500">backend:</span>{' '}
+                  <strong>typescript</strong> or maybe go?
                 </li>
                 <li>
-                  <span className="text-coolmint-500">otherwise:</span> probably{' '}
+                  <span className="text-coolmint-500">anything random:</span>{' '}
                   <strong>python</strong>
                 </li>
               </ul>
             </GenericSection>
             <div className="text-sm text-coolmint-500/30 sm:text-base">
-              <p>*still learning golang*</p>
-              <p>*i also think svelte is pretty cool*</p>
+              <p>
+                <i>*i only used go a few times*</i>
+              </p>
+              <p>
+                <i>*i kiiinda like svelte better than react*</i>
+              </p>
             </div>
           </div>
           {/* RIGHT SIDE */}
