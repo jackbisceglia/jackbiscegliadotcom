@@ -5,20 +5,20 @@ import {
   GitHubLogoIcon,
   LinkedInLogoIcon,
 } from '@radix-ui/react-icons';
-import type { InferGetServerSidePropsType, NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-
 import {
   GenericParagraph,
   GenericSection,
   SectionWrapper,
   style_defaults,
 } from '../components/layout/SectionUtils';
-import localAdapter from '../lib/adapters/local';
+import type { InferGetServerSidePropsType, NextPage } from 'next';
+
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 import blogGetter from '../lib/blogGetter';
+import localAdapter from '../lib/adapters/local';
 
 export const Divider = () => <hr className="border-coolmint-700" />;
 
@@ -211,7 +211,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = (
                 </li>
               </ul>
             </GenericSection>
-            <div className="text-sm text-coolmint-500/30 sm:text-base">
+            <div className="text-sm text-coolmint-400 sm:text-base">
               <p>
                 <i>*i only used go a few times*</i>
               </p>

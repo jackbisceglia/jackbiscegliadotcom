@@ -48,7 +48,7 @@ module.exports = {
         coolmint: {
           200: '#E5EEEB',
           300: '#C7CECC',
-          400: '#5F7D76',
+          400: '#7BAA9E',
           500: '#88EFE0',
           // 600: '#1BA894',
           600: '#1DB39E',
