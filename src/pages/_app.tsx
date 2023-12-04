@@ -8,9 +8,9 @@ import localFont from 'next/font/local';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/* <Head>
+      <Head>
         <html lang="en" />
-      </Head> */}
+      </Head>
       <Layout>
         <Component {...pageProps} />
       </Layout>
