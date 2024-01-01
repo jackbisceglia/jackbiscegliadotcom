@@ -16,6 +16,10 @@ html {
   color-scheme: dark;
 }
 
+a {
+  @apply focus:outline-coolmint-500 outline-offset-4
+}
+
 body {
   /* font-family: 'Raleway', sans-serif; */
   /* font-family: 'Satoshi', sans-serif; */

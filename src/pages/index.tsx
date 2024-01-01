@@ -105,7 +105,7 @@ const BlogCard = ({
   slug: string;
 }) => {
   return (
-    <Link className="w-full" href={`/blog/${slug}`}>
+    <Link className="w-full rounded-lg" href={`/blog/${slug}`}>
       <div className="flex flex-col justify-start h-full gap-2 p-5 transition-all duration-200 ease-in-out border-2 rounded-lg shadow-lg cursor-pointer group hover:pl-8 bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-coolmint-700">
         <h3 className="mb-1 text-lg font-extrabold text-white sm:text-xl group-hover:underline">
           {title}
@@ -147,7 +147,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = (
         />
       </Head>
       <div
-        className={`flex flex-col prose-strong:font-extrabold ${style_defaults.section_gap}`}
+        className={`flex flex-col prose-strong:font-extrabold  ${style_defaults.section_gap}`}
       >
         {/* INTRODUCTION SECTION */}
         <SectionWrapper>
@@ -247,22 +247,22 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = (
             </GenericSection>
             <GenericSection className="flex flex-col gap-2">
               <strong>favorite repos:</strong>
-              <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
-                <Link
-                  href="https://github.com/jackbisceglia/apptrack"
-                  target="_blank"
-                >
+              <Link
+                href="https://github.com/jackbisceglia/apptrack"
+                target="_blank"
+              >
+                <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
                   apptrack.tech 🚀{' '}
-                </Link>
-              </div>
-              <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
-                <Link
-                  href="https://github.com/LinkFrost/letsthink"
-                  target="_blank"
-                >
+                </div>
+              </Link>
+              <Link
+                href="https://github.com/LinkFrost/letsthink"
+                target="_blank"
+              >
+                <div className="flex transition-all duration-200 ease-in-out hover:pl-6 hover:underline hover:text-white  flex-col justify-start gap-2 rounded-md   bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-2 border-coolmint-700 cursor-pointer py-[0.375rem] px-4 shadow-lg ">
                   letsth.ink 💡
-                </Link>
-              </div>
+                </div>
+              </Link>
             </GenericSection>
           </div>
         </SectionWrapper>

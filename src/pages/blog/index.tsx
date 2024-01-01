@@ -1,16 +1,16 @@
+import { BlogPostMeta, Tag } from '../../lib/blogMisc';
 import {
   InferGetServerSidePropsType,
   InferGetStaticPropsType,
   NextPage,
 } from 'next';
-import Head from 'next/head';
-import Link from 'next/link';
 import { useMemo, useState } from 'react';
 
+import Head from 'next/head';
+import Link from 'next/link';
 import { SectionWrapper } from '../../components/layout/SectionUtils';
-import localAdapter from '../../lib/adapters/local';
 import blogGetter from '../../lib/blogGetter';
-import { BlogPostMeta, Tag } from '../../lib/blogMisc';
+import localAdapter from '../../lib/adapters/local';
 
 const BlogCard = ({
   title,
@@ -26,8 +26,11 @@ const BlogCard = ({
   slug: string;
 }) => {
   return (
-    <Link className="w-full" href={`/blog/${slug}`}>
-      <div className="flex flex-col justify-start h-full gap-2 p-5 transition-all duration-200 ease-in-out border-2 rounded-lg shadow-lg cursor-pointer group hover:pl-8 bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-coolmint-700">
+    <Link
+      className="w-full outline-offset-4 focus:outline-coolmint-500 rounded-lg"
+      href={`/blog/${slug}`}
+    >
+      <div className="flex  flex-col justify-start h-full gap-2 p-5 transition-all rounded-lg duration-200 ease-in-out border-2 shadow-lg cursor-pointer group hover:pl-8 bg-coolmint-700 hover:bg-coolmint-700/20 hover:border-coolmint-700 border-coolmint-700">
         <h3 className="mb-1 text-lg font-extrabold text-white sm:text-xl group-hover:underline">
           {title}
         </h3>
@@ -61,18 +64,32 @@ const NoBlogPosts = () => {
   );
 };
 
+const normalizeHasFilterTag = (filter: Tag, tags: BlogPostMeta['tags']) =>
+  filter === '' || tags.includes(filter);
+
+const normalizeHasSearchTerm = (search: string, post: BlogPostMeta) =>
+  search === '' ||
+  post.title.toLowerCase().includes(search.toLowerCase()) ||
+  post.summary.toLowerCase().includes(search.toLowerCase());
+
 const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   posts,
 }) => {
   const selectStyles = 'bg-coolmint-700 text-left';
   const [filter, setFilter] = useState<Tag>('');
+  const [search, setSearch] = useState<string>('');
 
-  const filteredPosts = useMemo(
-    () =>
-      posts.filter(
-        (post: BlogPostMeta) => filter === '' || post.tags.includes(filter),
-      ),
-    [posts, filter],
+  // const filteredPosts = useMemo(
+  //   () =>
+  //     posts.filter(
+  //       (post: BlogPostMeta) => filter === '' || post.tags.includes(filter),
+  //     ),
+  //   [posts, filter],
+  // );
+  const filteredPosts = posts.filter(
+    (post: BlogPostMeta) =>
+      normalizeHasFilterTag(filter, post.tags) &&
+      normalizeHasSearchTerm(search, post),
   );
 
   return (
@@ -100,8 +117,9 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <div className="flex items-center justify-center gap-3 text-base">
             <h3 className="text-coolmint-600">filter:</h3>
             <select
+              aria-label="filter blog posts by tag"
               onChange={(e) => setFilter(e.target.value as Tag)}
-              className="rounded-md bg-transparent text-white px-3 border-[1px] border-coolmint-600 outline-1 outline-coolmint-400 decoration-coolmint-400 p-1 text-left"
+              className="rounded-md bg-transparent focus:outline-coolmint-500 outline-offset-4 text-white px-3 border-[1px] border-coolmint-600 outline-1 outline-coolmint-400 decoration-coolmint-400 p-1 text-left"
             >
               <option value="" className={selectStyles}>
                 none
@@ -118,10 +136,12 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             </select>
           </div>
           <input
-            className="w-full px-4 py-2 mt-2 border-2 rounded-md text-neutral-200 bg-coolmint-700/20 border-coolmint-700"
+            className="w-full focus:outline-coolmint-500 outline-offset-4  px-4 py-2 mt-2 border-2 rounded-lg text-neutral-200 bg-coolmint-700/20 border-coolmint-700"
             type="text"
             name=""
-            id=""
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            id="searchbar"
             placeholder="search..."
           />
         </SectionWrapper>
